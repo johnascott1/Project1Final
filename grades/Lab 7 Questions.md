@@ -96,7 +96,6 @@ Notice that printSpeciesData should call the method of that name for the correct
 This example uses generic types to make the LinkedList only able to store Insect objects. Please see the Data Types lab for more information and examples on generic types.
 
 
-Please paste your Java code here:
 
 ### Problem 2:
 
@@ -108,23 +107,30 @@ Run the program, and review the code.
 
 There are a couple of new things:
 
-Input.java uses a TreeMap; which behaves like a HashMap but keeps the keys in order
-
-An Enum in the Furnace class. An Enum is a collection of named constants; useful if you know a variable can only have one of a defined number of values
+* Input.java uses a TreeMap; which behaves like a HashMap but keeps the keys in order
+* An Enum in the Furnace class. An Enum is a collection of named constants; useful if you know a 
+variable can only have one of a defined number of values
 
 Please make these changes to the program:
 
-a. In your HVAC program, create a new class called WaterHeater. This represents a service call for a water heater. A water heater service call needs an address, date service requested, description of the problem, and the age of the water heater. Resolved service calls also need the resolved date, description of the resolution, and the fee charged to the customer.
+a. In your HVAC program, create a new class called WaterHeater. This represents a service call for a 
+water heater. A water heater service call needs an address, date service requested, description of 
+the problem, and the age of the water heater. Resolved service calls also need the resolved date, 
+description of the resolution, and the fee charged to the customer. Note that many of these 
+variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. 
+So WaterHeater should be a subclass of ServiceCall, so it will have the same variables that 
+ServiceCall does. You'll need to add the WaterHeater specific variables. 
 
-b. The city requires that all service calls to water heaters have a mandatory $20 extra charge added. As this applies to all water heaters, add a static variable to your class to store this data.
+b. The city requires that all service calls to water heaters have a mandatory $20 extra charge added. 
+As this applies to all water heaters, add a static variable to your class to store this data.
 
-c. Add a toString method to WaterHeater which returns a string containing all the static and instance variables for a WaterHeater. You should break down the fee into the service charge plus the $20 mandatory city fee.
+c. Add a toString method to WaterHeater which returns a string containing all the static and 
+instance variables for a WaterHeater. You should break down the fee into the service charge plus 
+the $20 mandatory city fee.
 
-d. Add code to ServiceCallManager.java to test your new class. Make sure you can add service calls for water heaters to the list of todayServiceCalls.
+d. Add code to ServiceCallManager.java to test your new class. Make sure you can add service 
+calls for water heaters to the list of today's ServiceCalls.
 
-Push your version of HVAC to your own GitHub account and paste the link to your repository here:
-
-Please paste your Java code for HVAC.java and WaterHeater.java here
 
 ### Question 3 Support Ticket manager 
 
