@@ -2,6 +2,7 @@ package week_7.insects;
 
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -54,16 +55,20 @@ public class Question_1_InsectManagerTest {
     public void testButterflyClassStructure() throws Exception {
         
         Class butterflyClass = Class.forName("week_7.insects.Butterfly");
-        
-        
+
+        //Correct constructor
+        try {
+            Constructor c = butterflyClass.getDeclaredConstructor(String.class, int.class, String.class, String.class);
+        } catch (NoSuchMethodException ne) {
+            fail("Butterfly should declare a constructor with 4 arguments: name, wingCount, wingColor, favoriteFlower");
+        }
+    
         // Don't re-declare any variables from the Insect superclass
         assertFalse("Butterfly class should NOT declare a name variable", hasFieldOfType(butterflyClass, "name", String.class));
         assertFalse("Butterfly class should NOT declare a wingCount variable", hasFieldOfType(butterflyClass, "wingCount", int.class));
         assertFalse("Butterfly class should NOT declare a legCount variable", hasFieldOfType(butterflyClass, "legCount", int.class));
         
-    
         // Check Butterfly is a subclass of Insect
-    
         assertEquals("Butterfly should be a subclass of Insect", Insect.class, butterflyClass.getSuperclass());
         
         // Verify wingColor, favoriteFlower fields present
@@ -73,13 +78,13 @@ public class Question_1_InsectManagerTest {
         // Has getters and setters for wingColor, favoriteFlower?
         assertTrue("Add get and set methods for wingColor", hasGetSet(butterflyClass, "wingColor", String.class));
         assertTrue("Add get and set methods for favoriteFlower", hasGetSet(butterflyClass, "favoriteFlower", String.class));
-    
-    
-        // speciesDataReport method exists, takes no arguments, and is NOT abstract, and returns a String
         
+        // speciesDataReport method exists, takes no arguments, and is NOT abstract, and returns a String
         Method speciesData = butterflyClass.getDeclaredMethod("speciesDataReport");
         assertFalse("speciesDataReport should NOT be declared abstract. Implement it for the Butterfly class", Modifier.isAbstract(speciesData.getModifiers()));
         assertEquals("speciesDataReport should return a String", String.class, speciesData.getReturnType());
+        
+        
         
     }
     
@@ -88,7 +93,14 @@ public class Question_1_InsectManagerTest {
     public void testBeeClassStructure() throws Exception {
         
         Class beeClass = Class.forName("week_7.insects.Bee");
-        
+    
+    
+        //Correct constructor
+        try {
+            Constructor c = beeClass.getDeclaredConstructor(String.class, int.class, String.class, boolean.class);
+        } catch (NoSuchMethodException ne) {
+            fail("Butterfly should declare a constructor with 4 arguments: name, wingCount, bodyColor, makesHoney");
+        }
         
         // Don't re-declare any variables from the Insect superclass
         assertFalse("Bee class should NOT declare a name variable", hasFieldOfType(beeClass, "name", String.class));
