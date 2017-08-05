@@ -12,6 +12,8 @@ public class Bee {
     
     // TODO add a String called bodyColor
     
+    // TODO add a constructor
+    
     // TODO override the printSpeciesData to print Bee information
     
 }

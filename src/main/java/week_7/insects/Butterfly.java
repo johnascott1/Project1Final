@@ -11,6 +11,8 @@ public class Butterfly {
     
     // TODO add a String called favoriteFlower. Add get and set methods
     
+    // TODO add a constructor
+    
     // TODO override the printSpeciesData to print Butterfly information
     
 }
