@@ -8,12 +8,12 @@ import java.util.LinkedList;
 
 import static org.junit.Assert.*;
 
-public class TicketManagerTest {
+public class TicketTest {
     
     @Test
     public void testSearchDescription() throws Exception {
         
-        TicketManager manager = new TicketManager();
+        Question_3_Support_Ticket_Manager manager = new Question_3_Support_Ticket_Manager();
         
         Ticket testPr1 = new Ticket("The server is on fire", 1, "1", new Date());
         Ticket testPr2 = new Ticket("Server keeps rebooting", 2, "2", new Date());
@@ -62,8 +62,8 @@ public class TicketManagerTest {
     
     @Test
     public void testDeleteTicketByIssue() throws Exception {
-        
-        TicketManager manager = new TicketManager();
+    
+        Question_3_Support_Ticket_Manager manager = new Question_3_Support_Ticket_Manager();
         
         Ticket testPr1 = new Ticket("The server is on fire", 1, "1", new Date());
         Ticket testPr2 = new Ticket("Server keeps rebooting", 2, "2", new Date());
@@ -92,7 +92,7 @@ public class TicketManagerTest {
         
         // Delete a ticket NOT in the search results
         
-        manager = new TicketManager();
+        manager = new Question_3_Support_Ticket_Manager();
         
         manager.addTicketInPriorityOrder(testPr1);
         manager.addTicketInPriorityOrder(testPr2);
@@ -118,8 +118,8 @@ public class TicketManagerTest {
     
     @Test
     public void testDeleteTicketById() throws Exception {
-        
-        TicketManager manager = new TicketManager();
+    
+        Question_3_Support_Ticket_Manager manager = new Question_3_Support_Ticket_Manager();
         
         Ticket testPr1 = new Ticket("1", 1, "1", new Date());
         Ticket testPr2 = new Ticket("2", 2, "2", new Date());
@@ -186,8 +186,8 @@ public class TicketManagerTest {
     
     @Test
     public void testAddTicketInPriorityOrder() throws Exception {
-        
-        TicketManager manager = new TicketManager();
+    
+        Question_3_Support_Ticket_Manager manager = new Question_3_Support_Ticket_Manager();
         Ticket testPr1 = new Ticket("1", 1, "1", new Date());
         Ticket testPr2 = new Ticket("2", 2, "2", new Date());
         Ticket testPr3 = new Ticket("3", 3, "3", new Date());

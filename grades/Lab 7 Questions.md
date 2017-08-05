@@ -14,7 +14,8 @@ An int to store the number of wings
 
 A constant to store the number of legs, and set it to 6.
 
-Will these be public, private, or protected?
+Make these variables protected, so subclasses can access them.
+
 
 Add get and set methods for the first 2 variables. What will you do with the constant? Make it public, or add a get method?
 
@@ -24,11 +25,11 @@ A String to store the butterfly’s wing color
 
 A String to store the butterfly’s favorite flower
 
-Will these variablegit be public, private, or protected? Add get and set methods for these variables.
+Will these variables be public, private, or protected? Add get and set methods for these variables.
 
 Also, please add a constructor that takes 4 arguments – the butterfly’s name, wing color, number of wings, and favorite flower.
 
-Also, add a method to the Butterfly class called printSpeciesData. This method should print all the info for a Butterfly object – it’s name, wing color, number of wings, number of legs, and favorite flower.
+Also, add a method to the Butterfly class called speciesDataReport. This method should print all the info for a Butterfly object – it’s name, wing color, number of wings, number of legs, and favorite flower.
 
 Test your Butterfly class by writing code in the InsectManager class to create some test Butterfly object. Create two Butterfly objects, and then call the printSpeciesData method on each to display all the data for each of the Butterfly objects.
 
@@ -41,19 +42,17 @@ Next, create another subclass of Insect. This class should be called Bee. A Bee 
 
 Bee needs to have three variables:
 
-A String for the bee’s color
+A String for the bee’s body color
 
 A boolean for whether this species of bee makes honey (not all bees do)
-
-A String for this bee’s favorite flower
 
 Bee also needs a constructor to set all the variables a Bee object has. And, bee needs a method called printSpeciesData() that prints out all of the data for a Bee species. This method has the same name as the Butterfly method, but prints out the Bee information. As it prints out the information, it should print “This bee does make honey” or “this bee does not make honey” instead of “true” or “false”.
 
 Test your Bee class by writing code in the InsectManager class to create some test Bee object. Create two Bee objects, and then call the printSpeciesData method on each to display all the data for each of the Bee objects.
 
-Suggestions: name = “Honey bee”, color = “yellow and black”, makes honey = true, favorite flower = “Jasmine”, number of wings = 4
+Suggestions: name = “Honey bee”, color = “yellow and black”, makes honey = true,  number of wings = 4
 
-Name= “Bumble bee”, color = “yellow, black and white”, makes honey = False, favorite flower = “clover”, number of wings = 4
+Name= “Bumble bee”, color = “yellow, black and white”, makes honey = False, number of wings = 4
 
 Last task: Create a LinkedList of Insects (recommended: use Generic types to require that the list can only contain Insect objects). Add all of your Bee and Butterfly objects to this list.
 
@@ -95,6 +94,7 @@ Notice that printSpeciesData should call the method of that name for the correct
 
 This example uses generic types to make the LinkedList only able to store Insect objects. Please see the Data Types lab for more information and examples on generic types.
 
+(Note that the Autograder is looking for exact variable/method names. 
 
 
 ### Problem 2:

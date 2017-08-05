@@ -1,8 +1,6 @@
-package week_7.hvac;
+package week_7.service_calls;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by clara on 8/4/17.
@@ -30,7 +28,7 @@ d. Add code to ServiceCallManager.java to test your new class. Make sure you can
         //
         // Test for a new class called WaterHeater.
         // TODO should be a subclass of ServiceCall; have an age variable
-        Class waterHeater = Class.forName("week_7.hvac.WaterHeater");
+        Class waterHeater = Class.forName("week_7.service_calls.WaterHeater");
     
         // TODO Static $20 extra charge variable
         
