@@ -2,6 +2,15 @@ package week_7.service_calls;
 
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Date;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+
 /**
  * Created by clara on 8/4/17.
  */
@@ -10,35 +19,82 @@ public class Question_2_HVACTest {
     
     
     
-    /*a. In your HVAC program, create a new class called WaterHeater. This represents a service call for a water heater. A water heater service call needs an address, date service requested, description of the problem, and the age of the water heater. Resolved service calls also need the resolved date, description of the resolution, and the fee charged to the customer.
+/*
 
-b. The city requires that all service calls to water heaters have a mandatory $20 extra charge added. As this applies to all water heaters, add a static variable to your class to store this data.
+a. In your HVAC program, create a new class called WaterHeater.
+This represents a service call for a water heater.
 
-c. Add a toString method to WaterHeater which returns a string containing all the static and instance variables for a WaterHeater. You should break down the fee into the service charge plus the $20 mandatory city fee.
+ A water heater service call needs
 
-d. Add code to ServiceCallManager.java to test your new class. Make sure you can add service calls for water heaters to the list of todayServiceCalls.
+ - an address,
+ - date service requested,
+ - description of the problem, and the
+ 
+ - age of the water heater. *    <-- this is the only field not present in Service Call
+ 
+ -Resolved service calls also need the resolved date,
+ -description of the resolution, and the
+ - fee charged to the customer.
+ 
+ b. The city requires that all service calls to water heaters have a mandatory $20
+ extra charge added. As this applies to all water heaters, add a static variable called cityFee
+ to your class to store this data.
+ 
+ d. Create a constructor to set the following variables, in this order:
+address, description of the problem, date reported, and the age of the water heater.
+
+
+ c. Add a toString method to WaterHeater which returns a string containing all the static
+ and instance variables for a WaterHeater. You should break down the fee into the service
+ charge plus the $20 mandatory city fee.
+
+d. Add code to ServiceCallManager.java to test your new class.
+Make sure you can add service calls for water heaters to the list of todayServiceCalls.
 
 
 */
 
     @Test
-    void testWaterHeaterClassStructure() throws Exception {
+    public void testWaterHeaterClassStructure() throws Exception {
         // wow much reflection
-        //
-        //
+        
+        // These all throw exceptions if the Class, Field, or Method does not exist.
+        
         // Test for a new class called WaterHeater.
-        // TODO should be a subclass of ServiceCall; have an age variable
         Class waterHeater = Class.forName("week_7.service_calls.WaterHeater");
-    
-        // TODO Static $20 extra charge variable
         
+        // Subclass of ServiceCall
+        assertEquals("WaterHeater should be a subclass of ServiceCall", waterHeater.getSuperclass(), ServiceCall.class);
         
-        // TODO toString method to WaterHeater which returns a String containing all the static
-        // and instance variables for a WaterHeater. You should break down the fee into the
-        // service charge plus the $20 mandatory city fee.
+        Field age = waterHeater.getDeclaredField("age");
         
-    
-    
+        Method toString = waterHeater.getDeclaredMethod("toString");
+        assertEquals("WaterHeater toString should return a String. Whatever calls this method will display the String.", toString.getReturnType(), String.class);
+        
+        // cityFee, is static, set to 20
+        Field cityFee = waterHeater.getDeclaredField("cityFee");
+        assertTrue("cityFee variable should be static.", Modifier.isStatic((cityFee.getModifiers() )));
+        assertEquals("cityFee variable should be set to 20.", cityFee.get(null), 20.0);
+        
+        // Constructor
+        // address, description of the problem, date service requested, and the age of the water heater.
+        Constructor constr = waterHeater.getDeclaredConstructor(String.class, String.class, Date.class, int.class);
+        
+        // Make a WaterHeater, call toString methods
+        
+        Date testDate = new Date();
+        String testAddress = "1234 Test Street";
+        String testProblem = "Not heating water";
+        int testAge = 6;
+        Object o = constr.newInstance(testAddress, testProblem, testDate, testAge);
+        String s = (String) toString.invoke(o);
+        
+        assertTrue("toString should include the address", s.contains(testAddress));
+        assertTrue("toString should include the problem", s.contains(testProblem));
+        assertTrue("toString should include the date", s.contains(testDate.toString()));
+        assertTrue("toString should include the age", s.contains(testAge + ""));
+        assertTrue("toString should include the city fee", s.contains("20"));
+        
     
     }
 

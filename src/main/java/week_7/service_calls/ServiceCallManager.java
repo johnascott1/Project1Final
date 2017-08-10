@@ -2,6 +2,8 @@ package week_7.service_calls;
 
 import java.util.*;
 
+import static input.InputUtils.*;
+
 /**
  * Created by clara on 2/3/17.
  * User interface for managing service calls.
@@ -46,7 +48,7 @@ public class ServiceCallManager {
 
             displayMenu(mainMenuOptions);
 
-            int choice = Input.getPositiveIntInput();
+            int choice = intInput();
 
             if (choice == 1) {
                 addServiceCall();
@@ -89,7 +91,7 @@ public class ServiceCallManager {
         while (true) {
             displayMenu(addCallOptions);
 
-            int choice = Input.getPositiveIntInput();
+            int choice = intInput();
 
             if (choice == 1) {
                 addFurnaceServiceCall();
@@ -110,9 +112,9 @@ public class ServiceCallManager {
     /* Get data about furnace, create Furnace object, add to end of queue of ServiceCalls */
     private void addFurnaceServiceCall() {
 
-        String address = Input.getStringInput("Enter address of furnace");
-        String problem = Input.getStringInput("Enter description of problem");
-        Furnace.FurnaceType type = Input.getFurnaceType();
+        String address = stringInput("Enter address of furnace");
+        String problem = stringInput("Enter description of problem");
+        Furnace.FurnaceType type = HVAC_Input.getFurnaceType();
         Furnace f = new Furnace(address, problem, new Date(), type);
         todayServiceCalls.add(f);
 
@@ -123,9 +125,9 @@ public class ServiceCallManager {
     /* Get data about AC unit, create CentralAC object, add to end of queue of ServiceCalls */
     private void addACServiceCall() {
 
-        String address = Input.getStringInput("Enter address of AC Unit");
-        String problem = Input.getStringInput("Enter description of problem");
-        String model = Input.getStringInput("Enter model of AC unit");
+        String address = stringInput("Enter address of AC Unit");
+        String problem = stringInput("Enter description of problem");
+        String model = stringInput("Enter model of AC unit");
 
         CentralAC ac = new CentralAC(address, problem, new Date(), model);
         todayServiceCalls.add(ac);
@@ -146,8 +148,8 @@ public class ServiceCallManager {
 
         ServiceCall resolvedCall = todayServiceCalls.remove();    //Remove call from head of queue
 
-        String resolution = Input.getStringInput("Enter resolution for " + resolvedCall);
-        double fee = Input.getPositiveDoubleInput("Enter fee charged to customer");
+        String resolution = stringInput("Enter resolution for " + resolvedCall);
+        double fee = positiveDoubleInput("Enter fee charged to customer");
 
         resolvedCall.setResolution(resolution);
         resolvedCall.setFee(fee);

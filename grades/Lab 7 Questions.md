@@ -127,16 +127,19 @@ the problem, and the age of the water heater. Resolved service calls also need t
 description of the resolution, and the fee charged to the customer. Note that many of these 
 variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. 
 So WaterHeater should be a subclass of ServiceCall, so it will have the same variables that 
-ServiceCall does. You'll need to add the WaterHeater specific variables. 
+ServiceCall does. You'll need to add the WaterHeater-specific variables. 
 
 b. The city requires that all service calls to water heaters have a mandatory $20 extra charge added. 
-As this applies to all water heaters, add a static variable to your class to store this data.
+As this applies to all water heaters, add a static variable called cityFee to your class to store this data.
 
 c. Add a toString method to WaterHeater which returns a string containing all the static and 
 instance variables for a WaterHeater. You should break down the fee into the service charge plus 
 the $20 mandatory city fee.
 
-d. Add code to ServiceCallManager.java to test your new class. Make sure you can add service 
+d. Create a constructor to set the following variables, in this order: 
+address, description of the problem, date reported, and the age of the water heater.
+
+e. Add code to ServiceCallManager.java to test your new class. Make sure you can add service 
 calls for water heaters to the list of today's ServiceCalls.
 
 
