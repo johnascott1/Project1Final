@@ -107,9 +107,6 @@ This example uses generic types to make the LinkedList only able to store Insect
 
 ### Problem 2:
 
-Fork and pull the HVAC service call program from
-
-HYPERLINK "https://github.com/minneapolis-edu/HVAC" https://github.com/minneapolis-edu/ HYPERLINK "https://github.com/minneapolis-edu/HVAC" HVAC
 
 Run the program, and review the code.
 
