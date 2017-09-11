@@ -30,7 +30,7 @@ public class Question_1_InsectManagerTest {
         assertTrue("Add get and set methods for name", hasGetSet(insectClass, "name", String.class));
         assertTrue("Add get and set methods for wingCount", hasGetSet(insectClass, "wingCount", int.class));
         
-        Field leg = insectClass.getDeclaredField("legCount");
+        Field leg = insectClass.getDeclaredField("LEG_COUNT");
         
         // Is leg static and constant ?
         int modifiers = leg.getModifiers();
@@ -59,8 +59,10 @@ public class Question_1_InsectManagerTest {
         //Correct constructor
         try {
             Constructor c = butterflyClass.getDeclaredConstructor(String.class, int.class, String.class, String.class);
+            c.newInstance("Monarch", 4, "Orange and Black", "Flowers");
+    
         } catch (NoSuchMethodException ne) {
-            fail("Butterfly should declare a constructor with 4 arguments: name, wingCount, wingColor, favoriteFlower");
+            fail("Butterfly should declare a constructor with 4 arguments in this order: name, wingCount, wingColor, favoriteFlower");
         }
     
         // Don't re-declare any variables from the Insect superclass
@@ -74,6 +76,14 @@ public class Question_1_InsectManagerTest {
         // Verify wingColor, favoriteFlower fields present
         assertTrue("Butterfly class should have a wingColor String variable", hasFieldOfType(butterflyClass, "wingColor", String.class));
         assertTrue("Butterfly class should have a favoriteFlower String variable", hasFieldOfType(butterflyClass, "favoriteFlower", String.class));
+    
+        // And they should be protected or private
+        Field wing = butterflyClass.getDeclaredField("wingColor");
+        assertTrue("Butterfly's wingColor should be private or protected", Modifier.isPrivate(wing.getModifiers()) || Modifier.isProtected(wing.getModifiers()));
+    
+        Field flower = butterflyClass.getDeclaredField("favoriteFlower");
+        assertTrue("Butterfly's favoriteFlower should be private or protected", Modifier.isPrivate(flower.getModifiers()) || Modifier.isProtected(flower.getModifiers()));
+    
     
         // Has getters and setters for wingColor, favoriteFlower?
         assertTrue("Add get and set methods for wingColor", hasGetSet(butterflyClass, "wingColor", String.class));
@@ -99,7 +109,7 @@ public class Question_1_InsectManagerTest {
         try {
             Constructor c = beeClass.getDeclaredConstructor(String.class, int.class, String.class, boolean.class);
         } catch (NoSuchMethodException ne) {
-            fail("Butterfly should declare a constructor with 4 arguments: name, wingCount, bodyColor, makesHoney");
+            fail("Butterfly should declare a constructor with 4 arguments, in this order: name, wingCount, bodyColor, makesHoney");
         }
         
         // Don't re-declare any variables from the Insect superclass
@@ -119,8 +129,16 @@ public class Question_1_InsectManagerTest {
         // Has getters and setters for bodyColor, makesHoney?
         assertTrue("Add get and set methods for bodyColor", hasGetSet(beeClass, "bodyColor", String.class));
         assertTrue("Add get and set methods for makesHoney", hasGetSet(beeClass, "makesHoney", boolean.class));
-        
-        
+    
+    
+        // And they should be protected or private
+        Field wing = beeClass.getDeclaredField("bodyColor");
+        assertTrue("Bee's bodyColor should be private or protected", Modifier.isPrivate(wing.getModifiers()) || Modifier.isProtected(wing.getModifiers()));
+    
+        Field flower = beeClass.getDeclaredField("makesHoney");
+        assertTrue("Bee's makesHoney should be private or protected", Modifier.isPrivate(flower.getModifiers()) || Modifier.isProtected(flower.getModifiers()));
+    
+    
         // speciesDataReport method exists, takes no arguments, and is NOT abstract, and returns a String
         
         Method speciesData = beeClass.getDeclaredMethod("speciesDataReport");

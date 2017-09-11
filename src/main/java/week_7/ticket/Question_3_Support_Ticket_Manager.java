@@ -5,6 +5,9 @@ import java.util.LinkedList;
 
 import static input.InputUtils.*;
 
+/** The instruction are in grades/Lab 7 Questions.md  */
+
+
 public class Question_3_Support_Ticket_Manager {
     
     /* Main is hiding down here. Create a TicketManager object, and call the mainMenu method.

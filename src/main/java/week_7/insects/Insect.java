@@ -17,9 +17,4 @@ public abstract class Insect {
     // speciesDataReport should take no arguments, and return a String.
     
     
-    String name;
-    int wingCount;
-    static final int legCount = 6;
-    abstract String speciesDataReport();
-    
 }

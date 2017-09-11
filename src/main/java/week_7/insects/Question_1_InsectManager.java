@@ -1,5 +1,7 @@
 package week_7.insects;
 
+/** The instructions are in grades/Lab 7 Questions.md  */
+
 
 public class Question_1_InsectManager {
     
@@ -17,7 +19,7 @@ public class Question_1_InsectManager {
     
         // TODO Create two example Bee objects and add them to the ArrayList
     
-        // TODO loop over the ArrayList and call printSpeciesData() for each Insect (Butterfly, Bee) object in the ArrayList
+        // TODO loop over the ArrayList and call speciesDataReport() for each Insect (Butterfly, Bee) object in the ArrayList
     
     }
     
