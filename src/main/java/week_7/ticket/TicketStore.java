@@ -28,10 +28,14 @@ public class TicketStore {
         ticketComparator = new Comparator<Ticket>() {
             @Override
             public int compare(Ticket t1, Ticket t2) {
+    
+                //Joint equal priorities, sort with oldest first
                 if (t1.getPriority() == t2.getPriority()){
                     return t1.getDateReported().compareTo(t2.getDateReported());
                 }
+                
                 else {
+                    // Sort with smallest priority number at the start
                     return t1.getPriority() - t2.getPriority();
                 }
             }
@@ -107,7 +111,7 @@ public class TicketStore {
     /** Returns a list of tickets, with a description containing
      * the given String. The search is not case sensitive.
      * @param description Text to search for in Ticket descriptions
-     * @return a list of matching Tickets
+     * @return a list of matching Tickets. If no matches, return an empty list.
      */
     public LinkedList<Ticket> searchByDescription(String description) {
         //TODO problem 3, implement this method

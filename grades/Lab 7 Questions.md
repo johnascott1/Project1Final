@@ -157,6 +157,7 @@ e. Add code to ServiceCallManager.java to test your new class. Make sure you can
 
 This program is a prototype to manage IT support tickets for a company. Users would call or email a helpdesk to report computer problems, and this program keeps a record of all current problems. 
 
+The tickets are assigned a priority between 1-5.   1 is the most urgent (e.g. all servers down); 5 is the least (e.g. missing mouse mat). 
 When a problem is fixed, the ticket is deleted. 
 
 For this question, you'll add some features to the program. 
@@ -196,16 +197,14 @@ Implement Delete by Description.
 
 Modify your program so you can save information about deleted tickets.
 
-Your Tickets should be able to store another date; resolvedDate, the date the ticket was closed.
-And, a String that documents why the ticket was closed – the fix or the resolution for the ticket.
+Your Tickets should be able to store another date; `resolvedDate`, the date the ticket was closed.
+And, a String that documents why the ticket was closed – the fix or the resolution for the ticket. This String should be called `resolution`
 
 Now assume that when users delete a ticket, it has been resolved in some way. Either a technician fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
 
 Now, when you delete a Ticket, your program should ask the user for the resolution. It should store the resolution, plus the current date. Now, remove this Ticket from the ticketQueue list.
 
 And, add the resolved ticket to a new data structure.
-
-There are at least two ways of doing this. Would you rather subclass Ticket and create a new class called ResolvedTicket? Or modify the current Ticket class to add these two new variables?
 
 Will you create a new class to manage the list of resolved tickets? Re-use TicketStore? Or something else?
 

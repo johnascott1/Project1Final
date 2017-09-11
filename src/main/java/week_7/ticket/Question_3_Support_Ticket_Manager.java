@@ -59,12 +59,12 @@ public class Question_3_Support_Ticket_Manager {
     }
     
     
-    private void loadTickets() {
+    protected void loadTickets() {
         //TODO problem 7 load open tickets from a file, using your new TicketFileIO class
     }
     
     
-    private void addTicket() {
+    protected void addTicket() {
         // Get ticket data from user interface
         Ticket newTicket = ticketUI.getNewTicketInfo();
         // Add to the ticket store
@@ -73,7 +73,7 @@ public class Question_3_Support_Ticket_Manager {
     }
     
     
-    private void searchById() {
+    protected void searchById() {
         
         int ticketID = ticketUI.getTicketID();
         Ticket ticket = ticketStore.getTicketById(ticketID);
@@ -85,7 +85,7 @@ public class Question_3_Support_Ticket_Manager {
     }
 
 
-    private void deleteById() {
+    protected void deleteById() {
         // Get a ticket ID
         int ticketID = ticketUI.getTicketID();
         
@@ -133,18 +133,18 @@ public class Question_3_Support_Ticket_Manager {
     
     
     
-    private void showNextTicket() {
+    protected void showNextTicket() {
         Ticket next = ticketStore.peekNextTicket();
         ticketUI.displayTicket(next);
     }
     
-
-    private void displayAllTickets() {
+    
+    protected void displayAllTickets() {
         ticketUI.displayTickets(ticketStore.getAllTickets());
     }
     
     
-    private void quitProgram() {
+    protected void quitProgram() {
         
         //TODO Problem 6 use your new TicketFileIO class to save all open tickets to a file; save all resolved tickets to a separate file
     }
