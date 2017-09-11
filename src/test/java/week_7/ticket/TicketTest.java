@@ -379,10 +379,39 @@ public class TicketTest {
     
     }
     
+    
     @Test
-    public void testManualChecks() {
+    public void testManualChecksQuestion3() {
         fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
-                "\nThe instructor will check your work and assign the rest of the points");
+                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
     }
     
+    
+    @Test
+    public void testManualChecksQuestion4() {
+        fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
+                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+    }
+    
+    
+    @Test
+    public void testManualChecksQuestion5() {
+        fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
+                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+    }
+    
+    
+    @Test
+    public void testManualChecksQuestion6() {
+        fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
+                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+    }
+    
+    
+    @Test
+    public void testManualChecksQuestion7() {
+        fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
+                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+    }
+
 }
