@@ -9,7 +9,7 @@ public class Ticket {
     private String description;
     private Date dateReported;
 
-    //TODO Problem 1: explain the role of ticketIdCounter and ticketID
+    //TODO 1: Make sure you understand how ticketIdCounter and ticketID interact. Why is ticketIdCounter static and ticketID is not?
 
     //STATIC Counter - one variable, shared by all Ticket objects.
     //If any Ticket object modifies this counter, all Ticket objects will have the modified value
@@ -19,17 +19,41 @@ public class Ticket {
     //The ID for each ticket - an instance variable. Each Ticket will have it's own ticketID variable
     protected int ticketID;
 
-    // TODO problem 6: tickets need to store the resolution date and a string describing the resolution
+    // TODO 6: tickets need to store the resolution date and a string describing the resolution
     // Either add them to this class or create another class called ResolvedTicket - which
     // do you think is the better approach?
-
+    
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+    
+    public String getReporter() {
+        return reporter;
+    }
+    
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public Date getDateReported() {
+        return dateReported;
+    }
+    
+    public void setDateReported(Date dateReported) {
+        this.dateReported = dateReported;
+    }
+    
     public Ticket(String desc, int p, String rep, Date date) {
         this.description = desc;
         this.priority = p;
         this.reporter = rep;
         this.dateReported = date;
         this.ticketID = ticketIdCounter;
-        ticketIdCounter++;
+        ticketIdCounter++;    // Increment ticketIDcounter so the next ticket's number is one higher
     }
 
     protected int getPriority() {
@@ -46,5 +70,6 @@ public class Ticket {
         return("ID: " + this.ticketID + " Issue: " + this.description + " Priority: " + 					this.priority + " Reported by: "
                 + this.reporter + " Reported on: " + this.dateReported);
     }
+    
 }
 

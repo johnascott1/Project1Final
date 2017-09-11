@@ -125,7 +125,9 @@ Notice that the class to speciesDataReport runs the method of that name for the 
 
 ## Problem 2: HVAC, Inheritance
 
-This is Run the program, and review the code.
+This is a prototype of a program for managing calls to a Heating, Ventilation and Air Conditioning repair/servicing company. Customers will call to set up servicing of their furnaces, air conditioning etc. units. This program keeps a list of pending calls, and allows the operator to add new calls, and store resolutions of calls that have been done. 
+
+Run the program, and review the code.
 
 There are a couple of new things:
 
@@ -151,58 +153,82 @@ address, description of the problem, date reported, and the age of the water hea
 e. Add code to ServiceCallManager.java to test your new class. Make sure you can add service calls for water heaters to the list of today's ServiceCalls.
 
 
-### Question 3 Support Ticket manager 
+## Question 3 Support Ticket manager 
 
+This program is a prototype to manage IT support tickets for a company. Users would call or email a helpdesk to report computer problems, and this program keeps a record of all current problems. 
 
-All of these questions refer to the support ticket application from "Java Programming Support Ticket Program" PowerPoint slides. Please follow through these slides and get the code running.
+When a problem is fixed, the ticket is deleted. 
+
+For this question, you'll add some features to the program. 
 
 Run and test the program with some example support tickets.
 
-Answer the questions from Problem 1 and Problem 5. For your code, when you have finished all the problems, paste in your code at the end AND push it to your GitHub repository.
+### Problem 1:
 
-Problem 1:
+What is each class for? How are different responsibilities divided between the classes? 
 
-In your own words, Explain the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class?
+If the TicketStore used a database instead of an in-memory LinkedList, would TicketUI or Question_3_Support_Ticket_Manager have to do anything differently?
 
-Problem 2:
+Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class?
 
-Add code to the deleteTicket method; so if user enters a ticket ID that doesn’t exist, it prints an error message and asks the user to try again.
+### Problem 2:
 
-You should also validate that the user is not entering a String or double or something that is not an int. Again; the method should ask the user to enter the ticket ID again.)
+Add a check to TicketUI.getNewTicketInfo() method, to check that the priority entered is between 1 and 5. 
 
-Problem 3:
+### Problem 3:
 
-Modify the menu. Remove the Delete Ticket option. Replace it with 3 new options: Delete by ID, Delete by Issue, and Search by Issue.
+Add two new options to the menu: Delete by Description, and Search by Description.  You'll need to add some more int constants and modify the configureMenuOptions method. You *don't* need to modify TicketUI.
 
-Write ONE method, which searches your ticket list and returns a new list of Tickets whose descriptions contain a certain string. For example, you might want to search for all tickets with the word “server” in the description. Your method should return a list of all Tickets with “server” in the description.
+Search By Description will search your ticket list and returns a new list of Tickets whose descriptions contain a certain String. For example, you might want to search for all tickets with the word “server” in the description.
+ 
+Implement TicketStore.searchByDescription to search the list and return all matching tickets. 
 
-Use this method to help you implement Search by Issue option.
+Implement Question_3_Support_Ticket_Manager.searchByDescription. 
+Use a method in TicketUI to ask the user for the search string.
+Use TicketStore.searchByDescription to search for matching tickets
+Use a method in TicketUI to display all matching tickets. 
 
-Problem 4:
+### Problem 4:
 
-Now, implement Delete by Issue. Your user may want to search for all tickets with "Server" in the description, to see a list of those tickets and their IDs. At that point, they could enter an ID of the Ticket they want to delete.
+Implement Delete by Description. 
 
-Problem 5:
+### Problem 5:
 
-Modify your program so that Tickets can store another date – resolution date – and a String that documents why the ticket was closed – the fix or the resolution for the ticket.
+Modify your program so you can save information about deleted tickets.
 
-Now assume that when users delete a ticket, it has been resolved in some way. Either you’ve fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
+Your Tickets should be able to store another date; resolvedDate, the date the ticket was closed.
+And, a String that documents why the ticket was closed – the fix or the resolution for the ticket.
+
+Now assume that when users delete a ticket, it has been resolved in some way. Either a technician fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
 
 Now, when you delete a Ticket, your program should ask the user for the resolution. It should store the resolution, plus the current date. Now, remove this Ticket from the ticketQueue list.
 
-And, add this ticket to a new list, called resolvedTickets.
+And, add the resolved ticket to a new data structure.
 
-There are at least two ways of doing this:
+There are at least two ways of doing this. Would you rather subclass Ticket and create a new class called ResolvedTicket? Or modify the current Ticket class to add these two new variables?
 
-Question: Would you rather subclass Ticket and create a new class called ResolvedTicket? Or modify the current Ticket class to add these two new variables? Why did you choose the approach that you used?
+Will you create a new class to manage the list of resolved tickets? Re-use TicketStore? Or something else?
 
-Problem 6: When the program closes, please write out all the data about all open tickets, and all resolved tickets, to files.
+You'll need to add some new methods to TicketUI and TicketStore. Keep your classes focused on their current roles. 
 
-Resolved tickets should go into one file. This file should have today’s date in the filename. Something like “Resolved_tickets_as_of_february_14_2014.txt” perhaps?
+### Problem 6:
 
-Open tickets should go in another file called “open_tickets.txt”.
+When the program is closed, all the data is lost.  Add the ability to save all data to file.  You can decide how to organize and structure the data in your files. 
 
-Problem 7: When you program opens, it should look for a file called open_tickets.txt. Read in this file, and create ticket objects, and store these in the ticketQueue list so the user can see all open tickets.
+Create a new class to manage the file input and output. Question_3_Support_Ticket_Manager will use this class when the program starts and ends.  
 
-Problem 8: What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program.
+When the program closes, write out all the data about all open tickets to one file. 
+Write all data about tickets that have been resolved in this session, to a separate file.
+
+Resolved tickets should go into one file, per day. This file should have today’s date in the filename. Something like `resolved_tickets_as_of_february_20_2014.txt` perhaps? If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file. (Hint: you can open a file in append mode). 
+
+Open tickets should go in another file called `open_tickets.txt`.
+
+### Problem 7: 
+
+When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
+
+You don't need to read in the previous resolved tickets. 
+
+What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program.
 
