@@ -4,11 +4,13 @@ import java.util.Date;
 
 public class Furnace extends ServiceCall {
 
-    /* An enum is a group of constants. Since the furnace's type must be one of these, use
-    an Enum to contain the allowed types.  */
+    /* An enum is a group of constants.
+    Since the furnace's type must be one of these, can use an num to contain
+    the allowed types, and only the allowed types.  */
+    
     enum FurnaceType {
-        FORCED_AIR,
         BOILER,
+        FORCED_AIR,
         GRAVITY
     }
 

@@ -1,6 +1,6 @@
 # Lab 7 Inheritance, Abstract Classes
 
-## Problem 1:
+## Problem 1: Insect/Bee/Butterfly Abstract Classes
 
 *Note that the Autograder is looking for exact variable/method names.*
 
@@ -123,39 +123,32 @@ So declare it as abstract in Insect, and the compiler will make sure all subclas
 Notice that the class to speciesDataReport runs the method of that name for the correct type of Insect. It will calls the speciesDataReport from the Butterfly class if the Insect object in the list is a Butterfly, and it will call the speciesDataReport from the Bee class if the Insect object in the list is a Bee.
 
 
-### Problem 2:
+## Problem 2: HVAC, Inheritance
 
-
-Run the program, and review the code.
+This is Run the program, and review the code.
 
 There are a couple of new things:
 
-* Input.java uses a TreeMap; which behaves like a HashMap but keeps the keys in order
-* An Enum in the Furnace class. An Enum is a collection of named constants; useful if you know a 
-variable can only have one of a defined number of values
+* HVACInput.java uses a TreeMap; which behaves like a HashMap but keeps the keys in order.
+* An **enum** in the Furnace class. An enum is a collection of named constants; useful if you know a variable can only have one of a defined number of values - like types of furnace.
 
 Please make these changes to the program:
 
-a. In your HVAC program, create a new class called WaterHeater. This represents a service call for a 
-water heater. A water heater service call needs an address, date service requested, description of 
-the problem, and the age of the water heater. Resolved service calls also need the resolved date, 
-description of the resolution, and the fee charged to the customer. Note that many of these 
-variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. 
-So WaterHeater should be a subclass of ServiceCall, so it will have the same variables that 
-ServiceCall does. You'll need to add the WaterHeater-specific variables. 
+a. Create a new class called WaterHeater. This represents a service call for a 
+water heater. A water heater service call needs an **address**, **date service requested**, **description of the problem**, and the **age** of the water heater. 
 
-b. The city requires that all service calls to water heaters have a mandatory $20 extra charge added. 
-As this applies to all water heaters, add a static variable called cityFee to your class to store this data.
+Resolved service calls also need the **resolved date**, **description of the resolution**, and the **fee** charged to the customer. 
 
-c. Add a toString method to WaterHeater which returns a string containing all the static and 
-instance variables for a WaterHeater. You should break down the fee into the service charge plus 
-the $20 mandatory city fee.
+Note that many of these variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. So make WaterHeater should be a subclass of ServiceCall, and it will have the same variables that ServiceCall does. You'll need to add the WaterHeater-specific variables. 
+
+b. The city that this HVAC company operates in requires that all service calls to water heaters have a mandatory $20 extra charge added. As this applies to all water heaters, add a static variable called **cityFee** to your class to store this data.
+
+c. Override that **toString** method in WaterHeater which returns a String containing all the static and instance variables for a WaterHeater. You should break down the fee into the service charge plus the $20 mandatory city fee.
 
 d. Create a constructor to set the following variables, in this order: 
 address, description of the problem, date reported, and the age of the water heater.
 
-e. Add code to ServiceCallManager.java to test your new class. Make sure you can add service 
-calls for water heaters to the list of today's ServiceCalls.
+e. Add code to ServiceCallManager.java to test your new class. Make sure you can add service calls for water heaters to the list of today's ServiceCalls.
 
 
 ### Question 3 Support Ticket manager 

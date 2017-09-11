@@ -7,6 +7,7 @@ import java.util.Date;
 /**
  * Represents a service call to fix a central AC until
  */
+
 public class CentralAC extends ServiceCall{
 
     private String model;

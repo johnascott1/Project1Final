@@ -6,7 +6,7 @@ import static input.InputUtils.*;
 
 /**
  * Created by clara on 2/3/17.
- * User interface for managing service calls.
+ * Prototype of user interface for managing service calls.
  *
  */
 
@@ -14,96 +14,120 @@ public class ServiceCallManager {
 
     private LinkedList<ServiceCall> todayServiceCalls;
     private LinkedList<ServiceCall> resolvedServiceCalls;
+    
+    private final int ADD_CALL = 1;
+    private final int RESOLVE_CALL = 2;
+    private final int PRINT_NEXT_CALL = 3;
+    private final int PRINT_ALL_CALLS = 4;
+    private final int PRINT_ALL_RESOLVED = 5;
+    private final int QUIT = 6;
+    
+    private final int ADD_FURNACE = 1;
+    private final int ADD_AC = 2;
+    private final int RETURN_TO_MAIN = 3;
+    
+    
     // Menu options, as an array
-    String[] mainMenuOptions = {
-            "1. Add service call to queue",
-            "2. Resolve current call",
-            "3. Print current call",
-            "4. Print all outstanding calls",
-            "5. Print all resolved calls ",
-            "6. Quit" };
+    private String[] mainMenuOptions = {
+            ADD_CALL + ". Add service call to queue",
+            RESOLVE_CALL + ". Resolve current call",
+            PRINT_NEXT_CALL + ". Print current call",
+            PRINT_ALL_CALLS + ". Print all outstanding calls",
+            PRINT_ALL_RESOLVED + ". Print all resolved calls ",
+            QUIT + ". Quit" };
+    
 
-    String[] addCallOptions = {
-            "1. Add service call for furnace",
-            "2. Add service call for AC unit",
-            "3. Return to main menu" };
+    private String[] addCallOptions = {
+            ADD_FURNACE + ". Add service call for furnace",
+            ADD_AC + ". Add service call for AC unit",
+            RETURN_TO_MAIN + ". Return to main menu" };
 
+    
 
-    /* Constructor sets up the two lists, the UserInput object, and starts the main menu */
-    public ServiceCallManager() {
+    /* Constructor sets up the two lists to store data in the program. */
+    
+    ServiceCallManager() {
 
-        todayServiceCalls = new LinkedList<ServiceCall>();
+        todayServiceCalls = new LinkedList<>();
 
         // This will be used to store a list of resolved service calls.
-        resolvedServiceCalls = new LinkedList<ServiceCall>();
+        resolvedServiceCalls = new LinkedList<>();
 
-        manageCalls();
     }
 
 
     /* The main menu */
-    public void manageCalls() {
-
-        while (true) {
-
-            displayMenu(mainMenuOptions);
-
-            int choice = intInput();
-
-            if (choice == 1) {
-                addServiceCall();
-            }
-            else if (choice == 2) {
-                resolveServiceCall();
-            }
-            else if (choice == 3) {
-                showNextCall();
-            }
-            else if (choice == 4){
-                showAllOpenCalls();
-            }
-            else if (choice == 5) {
-                showAllResolvedCalls();
-            }
-            else if (choice == 6) {
-                break;
-            }
-            else {
-                System.out.println("Enter a number from the menu choices");
+    void manageCalls() {
+        
+        boolean quit = false;
+        
+        while (!quit) {
+        
+            displayMenu("Main Menu", mainMenuOptions);
+        
+            int choice = intInput("Enter selection: ");
+        
+            switch (choice) {
+                case ADD_CALL:
+                    addServiceCall();
+                    break;
+                case RESOLVE_CALL:
+                    resolveServiceCall();
+                    break;
+                case PRINT_NEXT_CALL:
+                    showNextCall();
+                    break;
+                case PRINT_ALL_CALLS:
+                    showAllOpenCalls();
+                    break;
+                case PRINT_ALL_RESOLVED:
+                    showAllResolvedCalls();
+                    break;
+                case QUIT:
+                    quit = true;  // Will stop the loop
+                default:
+                    System.out.println("Enter a number from the menu choices");
+                    break;
             }
         }
+        
         System.out.println("Thanks, bye!");
     }
 
 
     /* Displays the contents of an array; the array should hold each menu option. */
-    protected void displayMenu(String[] options) {
+    private void displayMenu(String menuName, String[] options) {
+    
+        System.out.println("\n" + menuName + "\n");
+        
         for (String option : options) {
             System.out.println(option);
         }
+        
     }
 
 
     /* Display sub-menu to add a new service call. Ask user what type of item needs servicing, and
-    call appropriate method to create a service call for that thing. */
+    call appropriate method to create a service call for that type of thing. */
     private void addServiceCall() {
 
         while (true) {
-            displayMenu(addCallOptions);
-
-            int choice = intInput();
-
-            if (choice == 1) {
-                addFurnaceServiceCall();
-            }
-            else if (choice == 2) {
-                addACServiceCall();
-            }
-            else if (choice == 3) {
-                return;
-            }
-            else {
-                System.out.println("Please enter a number from the menu choices");
+            displayMenu("Add Service Call Menu", addCallOptions);
+    
+            int choice = intInput("Enter selection: ");
+    
+            switch (choice) {
+                case ADD_FURNACE:
+                    addFurnaceServiceCall();
+                    break;
+                case ADD_AC:
+                    addACServiceCall();
+                    break;
+                case RETURN_TO_MAIN:
+                    return;
+                default:
+                    System.out.println("Please enter a number from the menu choices");
+                    break;
             }
         }
     }
@@ -125,7 +149,7 @@ public class ServiceCallManager {
     /* Get data about AC unit, create CentralAC object, add to end of queue of ServiceCalls */
     private void addACServiceCall() {
 
-        String address = stringInput("Enter address of AC Unit");
+        String address = stringInput("Enter address of AC unit");
         String problem = stringInput("Enter description of problem");
         String model = stringInput("Enter model of AC unit");
 
@@ -180,6 +204,7 @@ public class ServiceCallManager {
 
         // Display a numbered list of all the serviceCalls
         int callCount = 1;
+        
         for (ServiceCall call : todayServiceCalls) {
             System.out.println("Service Call " + callCount++ + ", " + call +  "\n");
         }
