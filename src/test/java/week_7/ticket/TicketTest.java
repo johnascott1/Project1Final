@@ -1,6 +1,5 @@
 package week_7.ticket;
 
-import com.sun.org.apache.xml.internal.resolver.readers.ExtendedXMLCatalogReader;
 import input.InputUtils;
 import org.junit.Test;
 //import org.powermock.api.easymock.PowerMock;

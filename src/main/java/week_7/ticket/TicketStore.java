@@ -1,5 +1,6 @@
 package week_7.ticket;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Comparator;
 
@@ -16,34 +17,43 @@ public class TicketStore {
     
     private LinkedList<Ticket> ticketQueue;
     
-    private Comparator<Ticket> ticketComparator;
+    // This is to sort tickets with highest priority first
+    // If two tickets have the same priority, oldest first
+    
+    private Comparator<Ticket> ticketComparator = new Comparator<Ticket>() {
+        @Override
+        public int compare(Ticket t1, Ticket t2) {
+            
+            //Joint equal priorities, sort with oldest first
+            if (t1.getPriority() == t2.getPriority()){
+                return t1.getDateReported().compareTo(t2.getDateReported());
+            }
+            
+            else {
+                // Sort with smallest priority number at the start
+                return t1.getPriority() - t2.getPriority();
+            }
+        }
+    };
     
     TicketStore() {
         
         ticketQueue = new LinkedList<>();
         
-        // This is to sort tickets with highest priority first
-        // If two tickets have the same priority, oldest first 
-        
-        ticketComparator = new Comparator<Ticket>() {
-            @Override
-            public int compare(Ticket t1, Ticket t2) {
-    
-                //Joint equal priorities, sort with oldest first
-                if (t1.getPriority() == t2.getPriority()){
-                    return t1.getDateReported().compareTo(t2.getDateReported());
-                }
-                
-                else {
-                    // Sort with smallest priority number at the start
-                    return t1.getPriority() - t2.getPriority();
-                }
-            }
-        };
     }
     
     
-    /** Add ticket, and then sort list to keep the highest-priority at the top of the queue */
+    /** Add all of the tickets in a list to the Ticket Queue, in priority order.
+     * @param tickets a list of tickets.
+     */
+    public void addAll(LinkedList<Ticket> tickets) {
+        ticketQueue.addAll(tickets);
+        ticketQueue.sort(ticketComparator);
+    }
+    
+    
+    /** Add ticket, and then sort list to keep the highest-priority at the top of the queue.
+     * @param newTicket the new Ticket to add. */
     public void add(Ticket newTicket) {
         ticketQueue.add(newTicket);
         ticketQueue.sort(ticketComparator);
@@ -93,7 +103,7 @@ public class TicketStore {
     /** Deletes by ticket ID.
      *  @return true if a ticket was found and deleted, false if a ticket with this ID is not in the queue */
     public boolean deleteTicketById(int deleteID) {
-       
+        
         //Loop over all tickets. Delete the one with this ticket ID
         
         for (Ticket ticket : ticketQueue) {

@@ -106,7 +106,7 @@ public class Question_3_Support_Ticket_Manager {
     }
     
     
-    protected void searchByIssue() {
+    protected void searchByDescription() {
         
         // TODO problem 3 implement this method.
         
@@ -119,7 +119,7 @@ public class Question_3_Support_Ticket_Manager {
     }
     
     
-    protected void deleteTicketByIssue() {
+    protected void deleteTicketByDescription() {
         
         // TODO problem 4 implement this method.
         // Ask user for search term e.g. "server"
