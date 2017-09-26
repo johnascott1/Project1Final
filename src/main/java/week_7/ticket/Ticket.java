@@ -5,7 +5,7 @@ import java.util.Date;
 public class Ticket {
 
     private int priority;
-    private String reporter; //Stores person or department who reported issue
+    private String reporter; //Stores person or department who reported problem
     private String description;
     private Date dateReported;
 
@@ -67,7 +67,7 @@ public class Ticket {
     public String getDescription() { return description; }
 
     public String toString(){
-        return("ID: " + this.ticketID + " Issue: " + this.description + " Priority: " + 					this.priority + " Reported by: "
+        return("ID: " + this.ticketID + " Description: " + this.description + " Priority: " + 					this.priority + " Reported by: "
                 + this.reporter + " Reported on: " + this.dateReported);
     }
     

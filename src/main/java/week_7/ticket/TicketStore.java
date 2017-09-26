@@ -1,6 +1,5 @@
 package week_7.ticket;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Comparator;
 

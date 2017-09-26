@@ -204,7 +204,7 @@ Now assume that when users delete a ticket, it has been resolved in some way. Ei
 
 Now, when you delete a Ticket, your program should ask the user for the resolution. It should store the resolution, plus the current date. Now, remove this Ticket from the ticketQueue list.
 
-And, add the resolved ticket to a new data structure.
+And, add fthe resolved ticket to a new data structure.
 
 Will you create a new class to manage the list of resolved tickets? Re-use TicketStore? Or something else?
 
@@ -214,9 +214,17 @@ You'll need to add some new methods to TicketUI and TicketStore. Keep your class
 
 When the program is closed, all the data is lost.  Add the ability to save all data to file.  You can decide how to organize and structure the data in your files. 
 
-Create a new class to manage the file input and output. Question_3_Support_Ticket_Manager will use this class when the program starts and ends.  
+Create a new class called TicketFileIO to manage the file input and output. Question_3_Support_Ticket_Manager will use methods in this class when the program starts and ends.  
 
-When the program closes, write out all the data about all open tickets to one file. 
+When the program closes, write out all the data about all open tickets to one file. Use a method called 
+
+```
+    public void saveTickets(LinkedList<Ticket> ticketList, String fileName) {
+        // TODO implement this method or copy your code
+    }
+    
+```
+    
 Write all data about tickets that have been resolved in this session, to a separate file.
 
 Resolved tickets should go into one file, per day. This file should have today’s date in the filename. Something like `resolved_tickets_as_of_february_20_2014.txt` perhaps? If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file. (Hint: you can open a file in append mode). 
@@ -227,6 +235,13 @@ Open tickets should go in another file called `open_tickets.txt`.
 
 When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
 
+```
+    /** Read a file, turn the data into Ticket objects, and return a list of Ticket objects */
+    public LinkedList<Ticket> loadTickets(String fileName) {
+        return null;  // TODO implement this method
+    }
+``` 
+    
 You don't need to read in the previous resolved tickets. 
 
 What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program.

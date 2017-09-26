@@ -3,7 +3,6 @@ package week_7.ticket;
 import java.util.TreeMap;
 
 
-
 /** The instruction are in grades/Lab 7 Questions.md  */
 
 

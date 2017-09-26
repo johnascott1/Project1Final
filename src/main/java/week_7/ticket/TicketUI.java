@@ -1,6 +1,8 @@
 package week_7.ticket;
 
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.TreeMap;
 
 import static input.InputUtils.intInput;
 import static input.InputUtils.stringInput;
@@ -38,7 +40,7 @@ public class TicketUI {
         Date dateReported = new Date(); //Default constructor creates Date with current date/time
         
         String description = stringInput("Enter problem");
-        String reporter = stringInput("Who reported this issue?");
+        String reporter = stringInput("Who reported this problem?");
         
         // TODO Problem 2 ensure the priority is between 1 and 5
         int priority = intInput("Enter priority of " + description);
