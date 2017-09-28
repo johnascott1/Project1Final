@@ -234,7 +234,8 @@ Open tickets should be saved in a file called `open_tickets.txt`.
 
 Write all data about tickets that have been resolved in this session, to a separate file.
 
-Resolved tickets should go into one file, per day. This file should have today’s date in the filename. Something like `resolved_tickets_as_of_february_20_2014.txt` perhaps? If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file. 
+Resolved tickets should go into one file, per day. This file should have today’s date in the filename and be in the format of `resolved_tickets_February_20_2014.txt`. If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file.  
+
 
 Use a method with this name, and arguments, 
 
@@ -250,6 +251,17 @@ Use a method with this name, and arguments,
     
 ```
     
+
+Here's some code to generate today's date as a string in the correct format,
+
+    
+```
+SimpleDateFormat filenameFormatter = new SimpleDateFormat("MMMM_dd_yyyy");
+Date date = new Date();   //defaults to today, right now
+String s = filenameFormatter.format(date);
+// s will be in the format "September_28_2017"
+        
+```
 
 ### Problem 7: 
 
