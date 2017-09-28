@@ -157,8 +157,15 @@ e. Add code to ServiceCallManager.java to test your new class. Make sure you can
 
 This program is a prototype to manage IT support tickets for a company. Users would call or email a helpdesk to report computer problems, and this program keeps a record of all current problems. 
 
-The tickets are assigned a priority between 1-5.   1 is the most urgent (e.g. all servers down); 5 is the least (e.g. missing mouse mat). 
-When a problem is fixed, the ticket is deleted. 
+Tickets need to store a description of the problem, the date the issue was reported, and the user who reported it. 
+
+The tickets are assigned a priority between 1-5.   
+1 is the most urgent (e.g. all servers down); 
+5 is the least (e.g. missing mouse mat). 
+
+Each ticket will have a unique integer ID. This is generated internally in the Ticket class.
+
+When a problem is fixed, the ticket is removed from the list of open tickets and added to a separate list of resolved tickets. A string describing the resolution is stored in the Ticket, and the date the ticket was resolved. 
 
 For this question, you'll add some features to the program. 
 
@@ -170,7 +177,7 @@ What is each class for? How are different responsibilities divided between the c
 
 If the TicketStore used a database instead of an in-memory LinkedList, would TicketUI or Question_3_Support_Ticket_Manager have to do anything differently?
 
-Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class?
+Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class? How are these used to create ID values for each ticket.
 
 ### Problem 2:
 
