@@ -20,8 +20,7 @@ public class Ticket {
     protected int ticketID;
 
     // TODO 6: tickets need to store the resolution date and a string describing the resolution
-    // Either add them to this class or create another class called ResolvedTicket - which
-    // do you think is the better approach?
+    // Either add these fields to this class
     
      
     public Ticket(String desc, int p, String rep, Date date) {
@@ -30,10 +29,13 @@ public class Ticket {
         this.reporter = rep;
         this.dateReported = date;
         this.ticketID = ticketIdCounter;
-        ticketIdCounter++;    // Increment ticketIDcounter so the next ticket's number is one higher
+        ticketIdCounter++;    // Increment ticketIDCounter so the next ticket's number is one higher
     }
     
+    // TODO 7: add your constructor to create a Ticket from existing Ticket data read from a file
     
+    // TODO 7: Ensure that every new Ticket created has a unique ID, even if the program is closed and restarted
+
     public void setPriority(int priority) {
         this.priority = priority;
     }
@@ -58,8 +60,6 @@ public class Ticket {
         this.dateReported = dateReported;
     }
     
-
-
     protected int getPriority() {
         return priority;
     }
@@ -74,6 +74,9 @@ public class Ticket {
         return("ID: " + this.ticketID + " Description: " + this.description + " Priority: " + 					this.priority + " Reported by: "
                 + this.reporter + " Reported on: " + this.dateReported);
     }
+    
+    // TODO you may want to add a method to generate a String representing this Ticket, suitable
+    //  for writing to a file. Whatever you write out, should be able to be read and turned back into a Ticket object.
     
     
 }

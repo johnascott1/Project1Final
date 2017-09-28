@@ -210,18 +210,16 @@ Implement Delete by Description.
 
 Modify your program so you can save information about deleted tickets.
 
-Your Tickets should be able to store another date; `resolvedDate`, the date the ticket was closed.
+Your Ticket objects should be able to store another date; `resolvedDate`, the date the ticket was closed.
 And, a String that documents why the ticket was closed – the fix or the resolution for the ticket. This String should be called `resolution`
 
-Now assume that when users delete a ticket, it has been resolved in some way. Either a technician fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
+When a ticket is deleted, it has been resolved in some way. Either a technician fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
 
-Now, when you delete a Ticket, your program should ask the user for the resolution. It should store the resolution, plus the current date. Now, remove this Ticket from the ticketQueue list.
+Now, when you delete a Ticket, your program should ask for the resolution. It should store the resolution string , plus the current date in the correct Ticket. Now, remove this Ticket from the ticketQueue list.
 
-And, add fthe resolved ticket to a new data structure.
+Create a ResolvedTicketStore object and add the resolved ticket to it. Add any other resolved tickets created in this session to the ResolvedTicketStore.
 
-Will you create a new class to manage the list of resolved tickets? Re-use TicketStore? Or something else?
-
-You'll need to add some new methods to TicketUI and TicketStore. Keep your classes focused on their current roles. 
+You'll need to add a new method(s) to TicketUI. Keep your classes focused on their current roles.
 
 ### Problem 6:
 
@@ -237,7 +235,7 @@ Write all data about tickets that have been resolved in this session, to a separ
 Resolved tickets should go into one file, per day. This file should have today’s date in the filename and be in the format of `resolved_tickets_February_20_2014.txt`. If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file.  
 
 
-Use a method with this name, and arguments, 
+Use a static method with this name, and arguments, 
 
 ```
     /* Write the list of tickets to the file with the name provided.
@@ -245,7 +243,7 @@ Use a method with this name, and arguments,
     If append=true, add data to the file
     If append=false, create a new file for this data.
     
-    public void saveTickets(LinkedList<Ticket> ticketList, String fileName, boolean append) {
+    public static void saveTickets(LinkedList<Ticket> ticketList, String fileName, boolean append) {
         // TODO implement this method
     }
     
@@ -267,14 +265,18 @@ String s = filenameFormatter.format(date);
 
 When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
 
+Use a static method with this name and arguments.
+
 ```
     /** Read a file, turn the data into Ticket objects, and return a list of Ticket objects */
-    public LinkedList<Ticket> loadTickets(String fileName) {
+    public static LinkedList<Ticket> loadTickets(String fileName) {
        // TODO implement this method and return a LinkedList of Tickets
     }
 ``` 
     
 You don't need to read in the previous resolved tickets, you only need to read the `open_tickets.txt` file
 
-What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program.
+What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program. Every tickets should always have a unique ID, no matter how many times the program is used. 
+
+You will need to create a second constructor for creating a tickets when the ID is already known. Make sure you don't break your mechanism for ensuring unique IDs. 
 

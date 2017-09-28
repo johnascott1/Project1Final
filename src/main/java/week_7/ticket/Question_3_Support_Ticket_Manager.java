@@ -14,7 +14,6 @@ public class Question_3_Support_Ticket_Manager {
     
     
     public static void main(String[] args) {
-        
         new Question_3_Support_Ticket_Manager().manage();
     }
     
@@ -27,9 +26,11 @@ public class Question_3_Support_Ticket_Manager {
     static final int SHOW_ALL_TICKETS = 5;
     static final int QUIT = 9;
     
-    // Global objects - the data store, and the user interface
+    // Global objects - the data stores, and the user interface
     private TicketStore ticketStore = new TicketStore();
     private TicketUI ticketUI = new TicketUI();
+    
+    // TODO Q5 create a ResolvedTicketStore object
     
     
     void manage() {
@@ -132,6 +133,10 @@ public class Question_3_Support_Ticket_Manager {
         //      Use TicketStore method to delete this ticket
     
         // else, use TicketUI to show user 'not found' message
+        
+        // TODO problem 5 use TicketUI to get the resolution for this Ticket
+        // Save the resolution and the current date in this Ticket
+        // add it to the ResolvedTicketStore object.
     
         }
     
@@ -150,7 +155,9 @@ public class Question_3_Support_Ticket_Manager {
     
     protected void quitProgram() {
         
-        //TODO Problem 6 use your new TicketFileIO class to save all open tickets to a file; save all resolved tickets to a separate file
+        //TODO Problem 6 use the TicketFileIO methods to save all open tickets to a file
+        //TODO Save all resolved tickets to a separate file containing today's filename
+        
     }
     
     
