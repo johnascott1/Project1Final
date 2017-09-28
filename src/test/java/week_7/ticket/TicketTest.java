@@ -116,6 +116,8 @@ public class TicketTest {
         //Add these tickets
         
         store.add(test1); store.add(test2); store.add(test3); store.add(test4);
+    
+        System.out.println("This test uses the following example tickets\n" + "\n" + test1 + "\n" + test2 + "\n" + test3 + "\n" + test4);
         
         // Search for 'server'. Should not be case sensitive, return test1 and test2
         
@@ -126,11 +128,23 @@ public class TicketTest {
         assertTrue(results.contains(test2));
         assertFalse(results.contains(test3));
         assertFalse(results.contains(test4));
+    
+    
+    
+        results = store.searchByDescription("security updates");
+        assertNotNull("Return a LinkedList of all Tickets whose description contains the search text. If no matches, return an empty list. Your search should not be case sensitive", results);
+        assertEquals(results.size(), 1);   // just one ticket
+        assertTrue(results.contains(test4));
         
-        
+    
         // Search for something not in the list
         results = store.searchByDescription("Powerpoint");
         assertNotNull("Return a LinkedList of results. If no matches, return an empty list.", results);
+        assertEquals("", results.size(), 0);   // No results
+        
+        // Empty string - should return empty list
+        results = store.searchByDescription("");
+        assertNotNull("A search for an empty string should return an empty list", results);
         assertEquals("", results.size(), 0);   // No results
         
     }
@@ -363,7 +377,14 @@ public class TicketTest {
         
     }
     
-   
+    
+    @Test(timeout=3000)
+    public void saveResolvedTickets() throws Exception {
+        
+        fail();   //TODO
+    }
+    
+    
     private boolean sameOpenTicket(Ticket t1, Ticket t2) throws Exception {
         // Could override .equals in the Ticket class, but not guaranteed that student will implement extra fields
         // Overriding .equals requires hashcode to be overriden too, and that's out of scope for this problem

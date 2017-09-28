@@ -11,18 +11,18 @@ For the Insect class, please add 3 variables:
 
 * A String called "name" to store the insect’s name. This variable should be protected
 * An int called "wingCount" to store the number of wings. This variable should be protected
-* A constant static int called "LEG_COUNT" to store the number of legs, and set it to 6. This variable should be public 
+* A constant static int called `LEG_COUNT` to store the number of legs, and set it to 6. This variable should be public 
 
 Add get and set methods for name and wingCount.
 
-Think about: why are name and wingCount protected? Why is LEG_COUNT public, and why doesn't it need get and set methods? 
+Think about: why are name and wingCount protected? Why is `LEG_COUNT` public, and why doesn't it need get and set methods? 
 
 The **Butterfly** class represents a butterfly species. It will be a subclass of Insect.
 
 Butterfly needs to extend Insect. Butterfly needs two new variables;
 
-* A String called "wingColor" to store the butterfly’s wing color
-* A String called "favoriteFlower" to store the butterfly’s favorite flower
+* A String called `wingColor` to store the butterfly’s wing color
+* A String called `favoriteFlower` to store the butterfly’s favorite flower
 
 Add get and set methods for wingColor and favoriteFlower variables.
 
@@ -181,6 +181,10 @@ Add a check to TicketUI.getNewTicketInfo() method, to check that the priority en
 Add two new options to the menu: Delete by Description, and Search by Description.  You'll need to add some more int constants and modify the configureMenuOptions method. You *don't* need to modify TicketUI.
 
 Search By Description will search your ticket list and returns a new list of Tickets whose descriptions contain a certain String. For example, you might want to search for all tickets with the word “server” in the description.
+
+The search should NOT be case sensitive.
+
+Note that you should not modify the description when you save tickets (so the approach of saving all in lowercase or uppercase does not work for this problem.)
  
 Implement TicketStore.searchByDescription to search the list and return all matching tickets. 
 
@@ -188,6 +192,8 @@ Implement Question_3_Support_Ticket_Manager.searchByDescription.
 Use a method in TicketUI to ask the user for the search string.
 Use TicketStore.searchByDescription to search for matching tickets
 Use a method in TicketUI to display all matching tickets. 
+
+If the user searches for an empty String, display no tickets. 
 
 ### Problem 4:
 
@@ -216,20 +222,27 @@ When the program is closed, all the data is lost.  Add the ability to save all d
 
 Create a new class called TicketFileIO to manage the file input and output. Question_3_Support_Ticket_Manager will use methods in this class when the program starts and ends.  
 
-When the program closes, write out all the data about all open tickets to one file. Use a method called 
+When the program closes, write out all the data about all open tickets to one file. 
+Open tickets should be saved in a file called `open_tickets.txt`.
+
+Write all data about tickets that have been resolved in this session, to a separate file.
+
+Resolved tickets should go into one file, per day. This file should have today’s date in the filename. Something like `resolved_tickets_as_of_february_20_2014.txt` perhaps? If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file. 
+
+Use a method with this name, and arguments, 
 
 ```
-    public void saveTickets(LinkedList<Ticket> ticketList, String fileName) {
-        // TODO implement this method or copy your code
+    /* Write the list of tickets to the file with the name provided.
+    The append argument specifies what to do if the file already exists. 
+    If append=true, add data to the file
+    If append=false, create a new file for this data.
+    
+    public void saveTickets(LinkedList<Ticket> ticketList, String fileName, boolean append) {
+        // TODO implement this method
     }
     
 ```
     
-Write all data about tickets that have been resolved in this session, to a separate file.
-
-Resolved tickets should go into one file, per day. This file should have today’s date in the filename. Something like `resolved_tickets_as_of_february_20_2014.txt` perhaps? If you run the program twice on one day, make sure you don't overwrite existing tickets in that day's file. (Hint: you can open a file in append mode). 
-
-Open tickets should go in another file called `open_tickets.txt`.
 
 ### Problem 7: 
 
@@ -238,11 +251,11 @@ When your program opens, it should look for a file called `open_tickets.txt`. If
 ```
     /** Read a file, turn the data into Ticket objects, and return a list of Ticket objects */
     public LinkedList<Ticket> loadTickets(String fileName) {
-        return null;  // TODO implement this method
+       // TODO implement this method and return a LinkedList of Tickets
     }
 ``` 
     
-You don't need to read in the previous resolved tickets. 
+You don't need to read in the previous resolved tickets, you only need to read the `open_tickets.txt` file
 
 What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program.
 
