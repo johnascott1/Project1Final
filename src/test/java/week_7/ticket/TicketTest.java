@@ -2,7 +2,6 @@ package week_7.ticket;
 
 import input.InputUtils;
 import org.junit.Test;
-//import org.powermock.api.easymock.PowerMock;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -156,11 +155,6 @@ public class TicketTest {
         
         TicketStore store = new TicketStore();
         
-        // Get the Ticket counter field and reset it
-        Field ticketCounter = Class.forName("week_7.ticket.Ticket").getDeclaredField("ticketIdCounter");
-        ticketCounter.setAccessible(true);
-        ticketCounter.set(null, 1);
-    
         Ticket test1 = new Ticket("The server is on fire", 1, "1", new Date());    //1
         Ticket test2 = new Ticket("Server keeps rebooting", 2, "2", new Date());  // 2
         Ticket test3 = new Ticket("Mouse mat stolen", 3, "3", new Date());          // 3
@@ -168,10 +162,14 @@ public class TicketTest {
     
         store.add(test1); store.add(test2); store.add(test3); store.add(test4);
     
-        assertEquals(store.getTicketById(4), test4);
-        assertEquals(store.getTicketById(3), test3);
-        assertEquals(store.getTicketById(2), test2);
-        assertEquals(store.getTicketById(1), test1);
+        assertEquals(test4, store.getTicketById(4));
+        assertEquals(test3, store.getTicketById(3));
+        assertEquals(test2, store.getTicketById(2));
+        assertEquals(test1, store.getTicketById(1));
+        
+        assertEquals(null, store.getTicketById(0));  // not valid
+        assertEquals(null, store.getTicketById(-2));  // not valid
+        assertEquals(null, store.getTicketById(200));  // doesn't exist valid
         
     }
     
@@ -419,5 +417,7 @@ public class TicketTest {
         fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
                 "\nThe instructor will check your work for Question 7 and assign the rest of the points");
     }
+    
+    
 
 }

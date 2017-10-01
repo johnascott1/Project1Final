@@ -17,19 +17,22 @@ public class Ticket {
     private static int ticketIdCounter = 1;
 
     //The ID for each ticket - an instance variable. Each Ticket will have it's own ticketID variable
-    protected int ticketID;
+    private int ticketID;
 
     // TODO 6: tickets need to store the resolution date and a string describing the resolution
     // Either add these fields to this class
     
      
     public Ticket(String desc, int p, String rep, Date date) {
+  
         this.description = desc;
         this.priority = p;
         this.reporter = rep;
         this.dateReported = date;
         this.ticketID = ticketIdCounter;
+    
         ticketIdCounter++;    // Increment ticketIDCounter so the next ticket's number is one higher
+    
     }
     
     // TODO 7: add your constructor to create a Ticket from existing Ticket data read from a file
