@@ -257,7 +257,7 @@ public class TicketTest {
         
         Ticket t = ui.getNewTicketInfo();
         
-        assertEquals("Do not accept ticket priorities outside the range 0-4", 4, t.getPriority());
+        assertEquals("Do not accept ticket priorities outside the range 1-5", 4, t.getPriority());
         
     }
     
