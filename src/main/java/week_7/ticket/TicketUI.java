@@ -39,8 +39,8 @@ public class TicketUI {
         
         Date dateReported = new Date(); //Default constructor creates Date with current date/time
         
-        String description = stringInput("Enter problem");
-        String reporter = stringInput("Who reported this problem?");
+        String description = stringInput("Enter description of the problem: ");
+        String reporter = stringInput("Who reported this problem? ");
         
         // TODO Problem 2 ensure the priority is between 1 and 5
         int priority = intInput("Enter priority of " + description);

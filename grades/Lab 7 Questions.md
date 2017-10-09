@@ -172,9 +172,9 @@ The tickets are assigned a priority between 1-5.
 1 is the most urgent (e.g. all servers down); 
 5 is the least (e.g. missing mouse mat). 
 
-Each ticket will have a unique integer ID. This is generated internally in the Ticket class.
+Each ticket will have a unique integer ID. This is generated internally in the Ticket class. (We'll improve on this approach later in the semester when we cover databases.)
 
-When a problem is fixed, the ticket is removed from the list of open tickets and added to a separate list of resolved tickets. A string describing the resolution is stored in the Ticket, and the date the ticket was resolved. 
+When a problem is fixed, the ticket is removed from the list of open tickets and added to a separate list of resolved tickets. A String describing the resolution is stored in the Ticket, and the date the ticket was resolved. 
 
 For this question, you'll add some features to the program. 
 
@@ -182,11 +182,11 @@ Run and test the program with some example support tickets.
 
 ### Problem 1:
 
-What is each class for? How are different responsibilities divided between the classes? 
+To think about: What is each class for? How are different responsibilities divided between the classes? 
 
 If the TicketStore used a database instead of an in-memory LinkedList, would TicketUI or Question_3_Support_Ticket_Manager have to do anything differently?
 
-Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class? How are these used to create ID values for each ticket.
+Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class? How are these used to create ID values for each ticket?
 
 ### Problem 2:
 
@@ -200,7 +200,7 @@ Search By Description will search your ticket list and returns a new list of Tic
 
 The search should NOT be case sensitive.
 
-Note that you should not modify the description when you save tickets (so the approach of saving all in lowercase or uppercase does not work for this problem.)
+Note that you should not modify the description when you save tickets. (So, the approach of saving all in lowercase or uppercase is not an acceptable solution for this problem.)
  
 Implement TicketStore.searchByDescription to search the list and return all matching tickets. 
 
@@ -226,9 +226,13 @@ When a ticket is deleted, it has been resolved in some way. Either a technician 
 
 Now, when you delete a Ticket, your program should ask for the resolution. It should store the resolution string , plus the current date in the correct Ticket. Now, remove this Ticket from the ticketQueue list.
 
-Create a ResolvedTicketStore object and add the resolved ticket to it. Add any other resolved tickets created in this session to the ResolvedTicketStore.
+A ResolvedTicketStore class is provided for you. It stores resolved tickets in a list, and provides an `addTicket` method. 
 
-You'll need to add a new method(s) to TicketUI. Keep your classes focused on their current roles.
+Create a ResolvedTicketStore object when the program starts. 
+
+When tickets are resolved, add the resolved ticket to your ResolvedTicketStore.. Add any other resolved tickets created in this session to the ResolvedTicketStore.
+
+You'll need to add a new method to TicketUI to get information about a ticket that is being resolved. Keep your classes focused on their current roles.
 
 ### Problem 6:
 
@@ -272,7 +276,7 @@ String s = filenameFormatter.format(date);
 
 ### Problem 7: 
 
-When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
+When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create Ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
 
 Use a static method with this name and arguments.
 
@@ -289,4 +293,4 @@ What happens to ticket IDs when the program is closed and opened? Make sure they
 
 You will need to create a second constructor for creating a tickets when the ID is already known. Make sure you don't break your mechanism for ensuring unique IDs. 
 
-*Actually, you'll only be able to create approx 2 billion ticket IDs with this approach. That should be enough for now, although perhaps something to revisit in a future version. 
+*Actually, you'll only be able to create approx 2 billion ticket IDs with this approach. That should be enough for now, although perhaps something that will be revisited in a future version using a relational database. 

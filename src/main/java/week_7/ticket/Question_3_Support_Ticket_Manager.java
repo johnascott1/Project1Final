@@ -119,7 +119,7 @@ public class Question_3_Support_Ticket_Manager {
         // Create a method in TicketStore to get list of matching Tickets for a search term;
         //      this method should return a list of all tickets which contain the user's
         //      search term in their description
-        // Use TicketUI method to print the list of matching tickets
+        // Use TicketUI displayTickets method to print the list of matching tickets
         
     }
     
@@ -138,7 +138,7 @@ public class Question_3_Support_Ticket_Manager {
         // Save the resolution and the current date in this Ticket
         // add it to the ResolvedTicketStore object.
     
-        }
+    }
     
     
     
