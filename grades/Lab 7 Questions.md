@@ -297,3 +297,6 @@ The tests will create a separate test directory and will read and write to this 
 You will need to create a second constructor for creating a tickets when the ID is already known. Make sure you don't break your mechanism for ensuring unique IDs. 
 
 *Actually, you'll only be able to create approx 2 billion ticket IDs with this approach. That should be enough for now, although perhaps something that will be revisited in a future version using a relational database. 
+
+
+**Test Failures** There will be 3 intentional test failures in this code. The instructor will review and assign points for your file IO code. 
