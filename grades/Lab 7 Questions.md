@@ -195,7 +195,7 @@ Add a check to `TicketUI.getNewTicketInfo()` method, to ensure that the priority
 
 ### Problem 3:
 
-Add two new options to the menu: Delete by Description, and Search by Description.  You'll need to add some more int constants and modify the configureMenuOptions method. You *don't* need to modify TicketUI.
+Add two new options to the menu: Delete by Description, and Search by Description.  You'll need to add some more int constants; and modify the `configureMenuOptions` method; and modify the switch statement in `manage`. You *don't* need to modify TicketUI.
 
 Search By Description will search your ticket list and returns a new list of Tickets whose descriptions contain a certain String. For example, you might want to search for all tickets with the word “server” in the description.
 

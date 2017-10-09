@@ -164,15 +164,17 @@ public class Question_3_Support_Ticket_Manager {
     private TreeMap<Integer,String> configureMenuOptions() {
         
         TreeMap<Integer, String> options = new TreeMap<>();
+        
         options.put(ADD_TICKET, "Add new ticket");
-        options.put(DELETE_BY_TICKET_ID, "Delete ticket by ID");
+        options.put(SEARCH_BY_ID, "Search by ticket ID");
+        options.put(DELETE_BY_TICKET_ID, "Delete by ticket ID");
         options.put(SHOW_NEXT_TICKET, "Show next ticket in ticket queue");
         options.put(SHOW_ALL_TICKETS, "Show all open tickets");
+        
         options.put(QUIT, "Save and quit");
         
         return options;
     }
-    
     
 }
 
