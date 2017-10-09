@@ -5,13 +5,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import test_utils.MockInput;
+//import test_utils.MockInput;
 import test_utils.PrintUtils;
 
 import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 import java.util.TreeMap;
 
 import static org.easymock.EasyMock.anyString;
@@ -63,7 +62,6 @@ public class TicketTest {
         assertEquals(allTickets.pop(), testPr4);
         
     }
-    
     
     
     @Test
@@ -127,8 +125,7 @@ public class TicketTest {
         assertTrue(results.contains(test2));
         assertFalse(results.contains(test3));
         assertFalse(results.contains(test4));
-    
-    
+        
     
         results = store.searchByDescription("security updates");
         assertNotNull("Return a LinkedList of all Tickets whose description contains the search text. If no matches, return an empty list. Your search should not be case sensitive", results);
@@ -246,37 +243,22 @@ public class TicketTest {
                 "\nIf you've modified the signature of testPriorityInRange, you may also need to also modify the test.");
         
         TicketUI ui = new TicketUI();
+    
+        // 'record' expected user responses
+        mockStatic(InputUtils.class);
+        expect(InputUtils.stringInput(anyString())).andReturn("Whatever");   // whatever problem
+        expect(InputUtils.stringInput(anyString())).andReturn("Whatever");   // whatever user
+        expect(InputUtils.intInput(anyString())).andReturn(6);   // Mock user enters 6 for priority
+        expect(InputUtils.intInput(anyString())).andReturn(1000);   // Mock user enters 100 for priority
+        expect(InputUtils.intInput(anyString())).andReturn(-1);   // Mock user enters -1 for priority
+        expect(InputUtils.intInput(anyString())).andReturn(0);   // Mock user enters 0 for priority
+        expect(InputUtils.intInput(anyString())).andReturn(4);   // Mock user enters 4 for priority
+        replay(InputUtils.class);
         
-        MockInput.setInputs("server", "reporter", "6");
-    
-        Ticket t = null;
+        Ticket t = ui.getNewTicketInfo();
         
-        try{
-            t = ui.getNewTicketInfo();      // Out of range. This should NOT complete.
-        } catch (NoSuchElementException e) {
-            // if your method asks for input again, none is provided. So
-            // a NoSuchElementException is thrown. This is expected, so can ignore.
-        } catch (Exception e) {
-        }
+        assertEquals("Do not accept ticket priorities outside the range 0-4", 4, t.getPriority());
         
-        assertNull(t);
-    
-    
-        MockInput.setInputs("server", "reporter", "0");
-    
-        Ticket t2 = null;
-    
-        try{
-            t2 = ui.getNewTicketInfo();      // Out of range. This should NOT complete.
-        } catch (NoSuchElementException e) {
-            // if your method asks for input again, none is provided. So
-            // a NoSuchElementException is thrown. This is expected, so can ignore.
-        } catch (Exception e) {
-        }
-    
-        assertNull(t2);
-    
-    
     }
     
     
@@ -290,9 +272,13 @@ public class TicketTest {
         TicketUI ui = new TicketUI();
     
         PrintUtils.catchStandardOut();
-        MockInput.setInputs("2");
+    
+        mockStatic(InputUtils.class);
+        expect(InputUtils.intInput(anyString())).andReturn(2);
+        replay(InputUtils.class);
+        
         int option = ui.showMenuGetChoice(options);
-        assertEquals(2, option);
+        assertEquals("If user selects 2 from the menu, this should return 2", 2, option);
         String out = PrintUtils.resetStandardOut();
         
         String msg = "This test uses a TreeMap that should produce the menu" +
@@ -314,8 +300,10 @@ public class TicketTest {
     
         Question_3_Support_Ticket_Manager q3 = new Question_3_Support_Ticket_Manager();
     
-        MockInput.setInputs(q3.QUIT);
-        
+        mockStatic(InputUtils.class);
+        expect(InputUtils.intInput(anyString())).andReturn(Question_3_Support_Ticket_Manager.QUIT);
+        replay(InputUtils.class);
+    
         q3.manage();
         
         PrintUtils.catchStandardOut();
