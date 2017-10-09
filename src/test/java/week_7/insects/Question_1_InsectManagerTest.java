@@ -24,7 +24,7 @@ public class Question_1_InsectManagerTest {
         Class insectClass = Class.forName("week_7.insects.Insect");
         assertTrue("Insect class should have a name variable", hasFieldOfType(insectClass, "name", String.class));
         assertTrue("Insect class should have a wingCount variable", hasFieldOfType(insectClass, "wingCount", int.class));
-        assertTrue("Insect class should have a legCount variable", hasFieldOfType(insectClass, "legCount", int.class));
+        assertTrue("Insect class should have a LEG_COUNT variable", hasFieldOfType(insectClass, "LEG_COUNT", int.class));
         
         // Has getters and setters for name, wingCount?
         assertTrue("Add get and set methods for name", hasGetSet(insectClass, "name", String.class));
@@ -35,13 +35,13 @@ public class Question_1_InsectManagerTest {
         // Is leg static and constant ?
         int modifiers = leg.getModifiers();
         
-        assertTrue("legCount should be static", Modifier.isStatic(modifiers));
-        assertTrue("legCount should be final (constant)", Modifier.isFinal(modifiers));
+        assertTrue("LEG_COUNT should be static", Modifier.isStatic(modifiers));
+        assertTrue("LEG_COUNT should be final (constant)", Modifier.isFinal(modifiers));
     
         // Is it set to 6?
-        Object legs = leg.get(null);  // legCount is static so argument is ignored. For an instance field, it will be the objects for which the field value should be read. EG Insect i = new Insect(); Field.get(i);
-        assertTrue("legCount should be an int", legs instanceof Integer);
-        assertEquals("legCount should be set to 6", 6, (int) legs);
+        Object legs = leg.get(null);  // LEG_COUNT is static so argument is ignored. For an instance field, it will be the objects for which the field value should be read. EG Insect i = new Insect(); Field.get(i);
+        assertTrue("LEG_COUNT should be an int", legs instanceof Integer);
+        assertEquals("LEG_COUNT should be set to 6", 6, (int) legs);
         
         // speciesDataReport method exists, takes no arguments, and is abstract, and returns a String
         
@@ -71,7 +71,7 @@ public class Question_1_InsectManagerTest {
         // Don't re-declare any variables from the Insect superclass
         assertFalse("Butterfly class should NOT declare a name variable", hasFieldOfType(butterflyClass, "name", String.class));
         assertFalse("Butterfly class should NOT declare a wingCount variable", hasFieldOfType(butterflyClass, "wingCount", int.class));
-        assertFalse("Butterfly class should NOT declare a legCount variable", hasFieldOfType(butterflyClass, "legCount", int.class));
+        assertFalse("Butterfly class should NOT declare a LEG_COUNT variable", hasFieldOfType(butterflyClass, "LEG_COUNT", int.class));
         
         // Check Butterfly is a subclass of Insect
         assertEquals("Butterfly should be a subclass of Insect", Insect.class, butterflyClass.getSuperclass());
@@ -134,7 +134,7 @@ public class Question_1_InsectManagerTest {
         // Don't re-declare any variables from the Insect superclass
         assertFalse("Bee class should NOT declare a name variable", hasFieldOfType(beeClass, "name", String.class));
         assertFalse("Bee class should NOT declare a wingCount variable", hasFieldOfType(beeClass, "wingCount", int.class));
-        assertFalse("Bee class should NOT declare a legCount variable", hasFieldOfType(beeClass, "legCount", int.class));
+        assertFalse("Bee class should NOT declare a LEG_COUNT variable", hasFieldOfType(beeClass, "LEG_COUNT", int.class));
         
         // Check Bee is a subclass of Insect
         
@@ -165,17 +165,17 @@ public class Question_1_InsectManagerTest {
     
         String message = "Make sure speciesDataReport returns a String will all the required data about the Bee. " +
                 "\nName, wing count, body color, leg count, makes honey. " +
-                "\nIf Bee makes honey include 'does make honey'. If does not make honey, include 'does not make honey";
+                "\nIf Bee makes honey include 'does make honey'. If does not make honey, include 'does not make honey'";
     
         
         String speciesDataStringNoHoney = (String) speciesData.invoke(testBeeNoHoney);
-        String[] expectedData = {"Bumble", "4", "6", "Stripy", "does not make honey"};
-        for (String s : expectedData) {
+        String[] expectedDataNoHoney = {"Bumble", "4", "6", "Stripy", "does not make honey"};
+        for (String s : expectedDataNoHoney) {
             assertTrue(message, speciesDataStringNoHoney.contains(s));
         }
         
     
-        String speciesDataStringHoney = (String) speciesData.invoke(testBeeNoHoney);
+        String speciesDataStringHoney = (String) speciesData.invoke(testBeeMakesHoney);
         String[] expectedDataHoney = {"Buzzy", "4", "6", "Yellow", "does make honey"};
         for (String s : expectedDataHoney) {
             assertTrue(message, speciesDataStringHoney.contains(s));
