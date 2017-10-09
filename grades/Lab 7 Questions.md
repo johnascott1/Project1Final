@@ -56,6 +56,7 @@ Bee needs to have two variables:
 * A String called `bodyColor` for the bee’s body color
 * A boolean called `makesHoney` for whether this species of bee makes honey (not all bees do)
 
+Add get and set methods for `bodyColor` and `makesHoney`. Call the methods for `makesHoney` getMakesHoney and setMakesHoney. If you create the methods with IntelliJ the default names might be different. 
 Think about: should you make these variables public, private, package-protected, or protected? 
 Do you need get and set methods for name and wingCount in Bee? Why or why not? 
 
