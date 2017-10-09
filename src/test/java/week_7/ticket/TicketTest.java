@@ -304,9 +304,8 @@ public class TicketTest {
         expect(InputUtils.intInput(anyString())).andReturn(Question_3_Support_Ticket_Manager.QUIT);
         replay(InputUtils.class);
     
-        q3.manage();
-        
         PrintUtils.catchStandardOut();
+        q3.manage();
         String out = PrintUtils.resetStandardOut();
     
         assertTrue("Ensure your menu has an option 'Search by description'. Use that exact text.", out.toLowerCase().contains("search by description"));

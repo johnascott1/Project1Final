@@ -214,7 +214,7 @@ If the `TicketStore.searchByDescription` is called with an empty string, it shou
 
 ### Problem 4:
 
-Implement Delete by Description. 
+Implement Delete by Description.  Follow the notes in `deleteTicketByDescription`.
 
 ### Problem 5:
 
