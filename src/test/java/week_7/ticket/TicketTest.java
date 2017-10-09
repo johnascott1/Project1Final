@@ -325,6 +325,8 @@ public class TicketTest {
         
         System.out.println("Don't ask for any user input when program quits.");
         
+        Question_3_Support_Ticket_Manager.ticketDataDirectory = "TestTicketData";
+        
         // Provide dummy return values from any input used
         mockStatic(InputUtils.class);
         expect(InputUtils.intInput(anyString())).andReturn(Question_3_Support_Ticket_Manager.QUIT);  // quit as soon as program loads
@@ -343,8 +345,8 @@ public class TicketTest {
     
         q3.manage();   // Start program, show menu, mock input should invoke the quit program option
         
-        
         Question_3_Support_Ticket_Manager q3_relaunch = new Question_3_Support_Ticket_Manager();
+        q3.loadTickets();
         
         // The tickets should have been read from a file, and be available.
     

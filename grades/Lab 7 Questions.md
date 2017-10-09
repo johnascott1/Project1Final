@@ -239,7 +239,7 @@ When the program is closed, all the data is lost.  Add the ability to save all d
 
 Create a new class called TicketFileIO to manage the file input and output. Question_3_Support_Ticket_Manager will use methods in this class when the program starts and ends.  
 
-When the program closes, write out all the data about all open tickets to one file. 
+When the program closes, write out all the data about all open tickets to one file in the **TicketData** directory of your project.
 Open tickets should be saved in a file called `open_tickets.txt`.
 
 Write all data about tickets that have been resolved in this session, to a separate file.
@@ -275,7 +275,7 @@ String s = filenameFormatter.format(date);
 
 ### Problem 7: 
 
-When your program opens, it should look for a file called `open_tickets.txt`. If this file exists, read in this file, and create Ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
+When your program opens, it should look for a file called `TicketData/open_tickets.txt`. If this file exists, read in this file, and create Ticket objects, and store these in the TicketStore object list so the user can see all open tickets.
 
 Use a static method with this name and arguments.
 
@@ -286,9 +286,13 @@ Use a static method with this name and arguments.
     }
 ``` 
     
-You don't need to read in the previous resolved tickets, you only need to read the `open_tickets.txt` file
+You don't need to read in the previous resolved tickets, you only need to read the open tickets from the  `open_tickets.txt` file
 
 What happens to ticket IDs when the program is closed and opened? Make sure they don't reset to 1 when the user restarts the program. Every ticket created should always have a unique positive integer ID, (excluding 0) no matter how many times the program is used*. 
+
+If you save the ticket ID in a file, make sure it's also in the the **TicketData** directory.
+
+The tests will create a separate test directory and will read and write to this location, so if you keep all of your files in **TicketData** then the tests won't overwrite your files.
 
 You will need to create a second constructor for creating a tickets when the ID is already known. Make sure you don't break your mechanism for ensuring unique IDs. 
 

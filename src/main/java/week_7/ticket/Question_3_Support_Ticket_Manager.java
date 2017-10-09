@@ -26,6 +26,8 @@ public class Question_3_Support_Ticket_Manager {
     
     // TODO Q5 create a ResolvedTicketStore object
     
+    // Write and read to files in this directory. The tests will use a different directory, but same filenames.
+    static String ticketDataDirectory = "TicketData";
     
     void manage() {
         
@@ -126,12 +128,15 @@ public class Question_3_Support_Ticket_Manager {
         
         //TODO Problem 6 use the TicketFileIO methods to save all open tickets to a file
         //TODO Save all resolved tickets to a separate file containing today's filename
-        
+        //TODO save the ticket ID counter so when the program re-opens, it does not reset to 1
+        // Make sure you save all of your files in the directory given by String ticketDataDirectory = "TicketData";
     }
     
     
     protected void loadTickets() {
         //TODO problem 7 load open tickets from a file, using your new TicketFileIO class
+        //TODO Configure ticketIDCounter
+        // Read your files from the directory given by ticketDataDirectory = "TicketData";
     }
     
     
