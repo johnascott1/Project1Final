@@ -76,8 +76,14 @@ Make sure you can add service calls for water heaters to the list of todayServic
             fail("Add an age field to the WaterHeater class");
         }
         
-        Method toString = waterHeater.getDeclaredMethod("toString");
-        assertEquals("WaterHeater toString should return a String. Whatever calls this method will display the String.", toString.getReturnType(), String.class);
+        Method toString = null;
+        
+        try {
+            toString = waterHeater.getDeclaredMethod("toString");
+            assertEquals("WaterHeater toString should return a String. Whatever calls this method will display the String.", toString.getReturnType(), String.class);
+        } catch (NoSuchMethodException e) {
+            fail("WaterHeater should define it's own toString method. toString should not take any arguments.");
+        }
         
         // cityFee, is static, a double, and is set to 20
         Field cityFee = waterHeater.getDeclaredField("cityFee");
@@ -123,9 +129,7 @@ Make sure you can add service calls for water heaters to the list of todayServic
             fail("Create a constructor in WaterHeater which takes these parameters: address, description of the " +
                     "problem, date service requested, and the age of the water heater. Parameters should be in this order.");
         }
-        // Make a WaterHeater, call toString methods
         
-    
     }
 
 

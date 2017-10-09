@@ -161,7 +161,7 @@ public class ServiceCallManager {
 
     /* Resolve the call at the top of the queue
      Call is resolved by removing it from the queue, asking user
-     for resolution and fee, and adding the call to the resolved calls queue
+     for resolution and fee, and adding the call to the resolved calls list
      TODO - future version could allow user to resolve any call, not just the one at the top of the queue */
     private void resolveServiceCall() {
 

@@ -11,7 +11,7 @@ For the Insect class, please add 3 variables:
 
 * A String called `name` to store the insect’s name. This variable should be protected.
 * An int called `wingCount` to store the number of wings. This variable should be protected.
-* A constant static int called `LEG_COUNT` to store the number of legs. Set it to 6. This variable should be public.
+* A constant static int called `LEG_COUNT` to store the number of legs. Set it to 6. This constant should be public.
 
 Add get and set methods for name and wingCount.
 
