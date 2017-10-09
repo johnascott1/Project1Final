@@ -49,6 +49,7 @@ public class Question_1_InsectManagerTest {
         assertTrue("speciesDataReport should be declared abstract", Modifier.isAbstract(speciesData.getModifiers()));
         assertEquals("speciesDataReport should return a String", String.class, speciesData.getReturnType());
         
+        
     }
     
     @Test
@@ -56,10 +57,12 @@ public class Question_1_InsectManagerTest {
         
         Class butterflyClass = Class.forName("week_7.insects.Butterfly");
 
+        Butterfly testButterfly = null;
+        
         //Correct constructor
         try {
             Constructor c = butterflyClass.getDeclaredConstructor(String.class, int.class, String.class, String.class);
-            c.newInstance("Monarch", 4, "Orange and Black", "Flowers");
+            testButterfly = (Butterfly) c.newInstance("Monarch", 4, "Orange and Black", "Flowers");
     
         } catch (NoSuchMethodException ne) {
             fail("Butterfly should declare a constructor with 4 arguments in this order: name, wingCount, wingColor, favoriteFlower");
@@ -94,8 +97,16 @@ public class Question_1_InsectManagerTest {
         assertFalse("speciesDataReport should NOT be declared abstract. Implement it for the Butterfly class", Modifier.isAbstract(speciesData.getModifiers()));
         assertEquals("speciesDataReport should return a String", String.class, speciesData.getReturnType());
         
-        
-        
+        // Print correct data?
+        String[] expectedData = {"Monarch", "4", "6", "Orange and Black", "Flowers"};
+    
+        String message = "Make sure speciesDataReport returns a String will all the required data about the Butterfly. Name, wing count, wing color, leg count, favorite flower.";
+    
+        String speciesDataString = (String) speciesData.invoke(testButterfly);
+        for (String s : expectedData) {
+            assertTrue(message, speciesDataString.contains(s));
+        }
+    
     }
     
     
@@ -104,12 +115,20 @@ public class Question_1_InsectManagerTest {
         
         Class beeClass = Class.forName("week_7.insects.Bee");
     
+        Bee testBeeNoHoney = null;
+        Bee testBeeMakesHoney = null;
     
         //Correct constructor
         try {
             Constructor c = beeClass.getDeclaredConstructor(String.class, int.class, String.class, boolean.class);
+            testBeeNoHoney = (Bee) c.newInstance("Bumble", 4, "Stripy", false);
+            testBeeMakesHoney = (Bee) c.newInstance("Buzzy", 4, "Yellow", true);
+    
         } catch (NoSuchMethodException ne) {
-            fail("Butterfly should declare a constructor with 4 arguments, in this order: name, wingCount, bodyColor, makesHoney");
+            fail("Bee should declare a constructor with 4 arguments, in this order: name, wingCount, bodyColor, makesHoney");
+        } catch (Exception e) {
+            System.out.println("Error creating Bee object with constructor");
+            fail(e.getMessage());
         }
         
         // Don't re-declare any variables from the Insect superclass
@@ -143,17 +162,27 @@ public class Question_1_InsectManagerTest {
         Method speciesData = beeClass.getDeclaredMethod("speciesDataReport");
         assertFalse("speciesDataReport should NOT be declared abstract. Implement it for the Bee class", Modifier.isAbstract(speciesData.getModifiers()));
         assertEquals("Bee class speciesDataReport should return a String", String.class, speciesData.getReturnType());
+    
+        String message = "Make sure speciesDataReport returns a String will all the required data about the Bee. " +
+                "\nName, wing count, body color, leg count, makes honey. " +
+                "\nIf Bee makes honey include 'does make honey'. If does not make honey, include 'does not make honey";
+    
         
+        String speciesDataStringNoHoney = (String) speciesData.invoke(testBeeNoHoney);
+        String[] expectedData = {"Bumble", "4", "6", "Stripy", "does not make honey"};
+        for (String s : expectedData) {
+            assertTrue(message, speciesDataStringNoHoney.contains(s));
+        }
+        
+    
+        String speciesDataStringHoney = (String) speciesData.invoke(testBeeNoHoney);
+        String[] expectedDataHoney = {"Buzzy", "4", "6", "Yellow", "does make honey"};
+        for (String s : expectedDataHoney) {
+            assertTrue(message, speciesDataStringHoney.contains(s));
+        }
     }
     
     
-    
-    @Test
-    public void testSpeciesData() {
-        
-        // Create a Butterfly and call speciesDataReport
-        
-    }
     
     
     
