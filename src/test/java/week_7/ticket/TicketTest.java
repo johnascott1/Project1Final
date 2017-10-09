@@ -359,7 +359,13 @@ public class TicketTest {
                 "Wrote out \n%s\n and got \n%s\n back. Make sure all the data is the same as the original ticket.";
         assertTrue(String.format(msg, test1, read_1), sameOpenTicket(ticketList_relaunch.pop(), test1) );
         assertTrue(String.format(msg, test2, read_2), sameOpenTicket(ticketList_relaunch.pop(), test2) );
+    
         
+        // Add a new ticket. It's ID should be 3 (not 1)
+        Ticket new_3 = new Ticket("whatever", 3, "whatever", new Date());
+        assertEquals("After re-starting program with 2 saved tickets, the next ticket created should have the ID 3", 3, new_3.getTicketID());
+    
+    
     }
     
     
