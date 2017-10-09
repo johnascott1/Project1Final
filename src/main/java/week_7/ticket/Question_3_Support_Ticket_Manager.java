@@ -115,7 +115,7 @@ public class Question_3_Support_Ticket_Manager {
         
         // TODO problem 3 implement this method.
         
-        // Use TicketUI method to ask user for search term e.g. "server" or "powerpoint"
+        // Use TicketUI getSearchTerm method to ask user for search term e.g. "server" or "powerpoint"
         // Create a method in TicketStore to get list of matching Tickets for a search term;
         //      this method should return a list of all tickets which contain the user's
         //      search term in their description

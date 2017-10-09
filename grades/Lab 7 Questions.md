@@ -201,16 +201,16 @@ Search By Description will search your ticket list and returns a new list of Tic
 
 The search should NOT be case sensitive.
 
-Note that you should not modify the description when you save tickets. (So, the approach of saving all in lowercase or uppercase is not an acceptable solution for this problem.)
+Note that you should not modify the description when you save tickets. (So, the approach of saving all descriptions in lowercase or uppercase is not an acceptable solution for this problem.)
  
 Implement TicketStore.searchByDescription to search the list and return all matching tickets. 
 
 Implement Question_3_Support_Ticket_Manager.searchByDescription. 
-Use a method in TicketUI to ask the user for the search string.
-Use TicketStore.searchByDescription to search for matching tickets
-Use a method in TicketUI to display all matching tickets. 
+Use the `getSearchTerm` method in TicketUI to ask the user for the search string.
+Use `TicketStore.searchByDescription` to search for matching tickets
+Use the `displayTickets` method in TicketUI to display all matching tickets. 
 
-If the user searches for an empty String, display no tickets. 
+If the `TicketStore.searchByDescription` is called with an empty string, it should return an empty list.
 
 ### Problem 4:
 

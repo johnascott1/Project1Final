@@ -136,12 +136,12 @@ public class TicketTest {
         // Search for something not in the list
         results = store.searchByDescription("Powerpoint");
         assertNotNull("Return a LinkedList of results. If no matches, return an empty list.", results);
-        assertEquals("", results.size(), 0);   // No results
+        assertEquals("Return a LinkedList of results. If no matches, return an empty list.", results.size(), 0);   // No results
         
         // Empty string - should return empty list
         results = store.searchByDescription("");
         assertNotNull("A search for an empty string should return an empty list", results);
-        assertEquals("", results.size(), 0);   // No results
+        assertEquals("A search for an empty string should return an empty list", results.size(), 0);   // No results
         
     }
 
