@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-//import test_utils.MockInput;
 import test_utils.PrintUtils;
 
 import java.lang.reflect.Field;
@@ -149,6 +148,11 @@ public class TicketTest {
     
     @Test
     public void testGetTicketByID() throws Exception {
+        
+        // Get the Ticket counter field and reset it
+        Field ticketCounter = Class.forName("week_7.ticket.Ticket").getDeclaredField("ticketIdCounter");
+        ticketCounter.setAccessible(true);
+        ticketCounter.set(null, 1);
         
         TicketStore store = new TicketStore();
         
@@ -313,19 +317,20 @@ public class TicketTest {
         
     }
     
+    
     /* *********** Resolved Tickets in Files ********************/
     
     @Test(timeout=3000)
     public void saveAndRestoreTickets() throws Exception {
         
+        System.out.println("Don't ask for any user input when program quits.");
+        
         // Provide dummy return values from any input used
         mockStatic(InputUtils.class);
-        expect(InputUtils.intInput(anyString())).andReturn(1);
-        expect(InputUtils.doubleInput(anyString())).andReturn(1.1);
-        expect(InputUtils.stringInput(anyString())).andReturn("1");
-        expect(InputUtils.yesNoInput(anyString())).andReturn(true);  // Hopefully this will catch an "Are you sure you want to quit?" message
+        expect(InputUtils.intInput(anyString())).andReturn(Question_3_Support_Ticket_Manager.QUIT);  // quit as soon as program loads
+        expect(InputUtils.yesNoInput(anyString())).andReturn(true);  // Just in case student adds an 'are you sure'
         replay(InputUtils.class);
-        
+    
         Question_3_Support_Ticket_Manager q3 = new Question_3_Support_Ticket_Manager();
         
         // Test tickets with all different priorities
@@ -333,47 +338,34 @@ public class TicketTest {
         Ticket test2 = new Ticket("Word needs updating", 3, "reporter", new Date());
     
         // Force these tickets into the store
-        Class managerClass = Class.forName("week_7.ticket.Question_3_Support_Ticket_Manager");
-        Field ticketStoreField = managerClass.getDeclaredField("ticketStore");
-        ticketStoreField.setAccessible(true);
-        TicketStore store = (TicketStore) ticketStoreField.get(q3);
+        q3.ticketStore.add(test1);
+        q3.ticketStore.add(test2);
+    
+        q3.manage();   // Start program, show menu, mock input should invoke the quit program option
         
-        store.add(test1);  store.add(test2);
-        
-        q3.quitProgram();    // End program. These tickets should be saved to a file.
         
         Question_3_Support_Ticket_Manager q3_relaunch = new Question_3_Support_Ticket_Manager();
         
         // The tickets should have been read from a file, and be available.
     
-        TicketStore store_relaunch = (TicketStore) ticketStoreField.get(q3_relaunch);
-        LinkedList<Ticket> ticketList_relaunch = store_relaunch.getAllTickets();
+        LinkedList<Ticket> ticketList_relaunch = q3_relaunch.ticketStore.getAllTickets();
         
-        assertEquals("There should be the same number of open tickets after your app is restarted. " +
+        assertEquals("There should be the same number of open tickets after your app is restarted, saved in the same priority order " +
                 "Save all open tickets to a file when app closes, read the tickets from the file when it restarts.", ticketList_relaunch.size(), 2);
-    
         
         Ticket read_1 = ticketList_relaunch.pop();
         Ticket read_2 = ticketList_relaunch.pop();
         String msg = "Read all data from the file to create a new ticket.  " +
                 "Wrote out \n%s\n and got \n%s\n back. Make sure all the data is the same as the original ticket.";
-        assertTrue(String.format(msg, test1, read_1), sameOpenTicket(ticketList_relaunch.pop(), test2) );
+        assertTrue(String.format(msg, test1, read_1), sameOpenTicket(ticketList_relaunch.pop(), test1) );
         assertTrue(String.format(msg, test2, read_2), sameOpenTicket(ticketList_relaunch.pop(), test2) );
         
-    }
-    
-    
-    @Test(timeout=3000)
-    public void saveResolvedTickets() throws Exception {
-        
-        fail();   //TODO
     }
     
     
     private boolean sameOpenTicket(Ticket t1, Ticket t2) throws Exception {
         // Could override .equals in the Ticket class, but not guaranteed that student will implement extra fields
         // Overriding .equals requires hashcode to be overriden too, and that's out of scope for this problem
-        
         
         if (t1.getTicketID() != t2.getTicketID()) { return false; }
         if (!(t1.getDateReported().equals(t2.getDateReported())))  { return false; }
@@ -388,21 +380,21 @@ public class TicketTest {
     @Test
     public void testManualChecksQuestion5() {
         fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
-                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+                "\nThe instructor will check your work for part 5 and assign the rest of the points");
     }
     
     
     @Test
     public void testManualChecksQuestion6() {
         fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
-                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+                "\nThe instructor will check your work for part 6 and assign the rest of the points");
     }
     
     
     @Test
     public void testManualChecksQuestion7() {
         fail("This test is supposed to fail. Tests can't check every aspect of this program. " +
-                "\nThe instructor will check your work for Question 7 and assign the rest of the points");
+                "\nThe instructor will check your work for part 7 and assign the rest of the points");
     }
     
     

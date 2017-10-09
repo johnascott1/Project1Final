@@ -1,9 +1,5 @@
 package week_7.ticket;
 
-import javax.swing.text.DateFormatter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.TreeMap;
 
 
@@ -12,11 +8,9 @@ import java.util.TreeMap;
 
 public class Question_3_Support_Ticket_Manager {
     
-    
     public static void main(String[] args) {
         new Question_3_Support_Ticket_Manager().manage();
     }
-    
     
     // Constants used to display menu options, and figure out what user entered.
     static final int ADD_TICKET = 1;
@@ -27,8 +21,8 @@ public class Question_3_Support_Ticket_Manager {
     static final int QUIT = 9;
     
     // Global objects - the data stores, and the user interface
-    private TicketStore ticketStore = new TicketStore();
-    private TicketUI ticketUI = new TicketUI();
+    TicketStore ticketStore = new TicketStore();
+    TicketUI ticketUI = new TicketUI();
     
     // TODO Q5 create a ResolvedTicketStore object
     
@@ -47,29 +41,25 @@ public class Question_3_Support_Ticket_Manager {
         
             switch (userChoice) {
                 case ADD_TICKET:
-                    addTicket();
+                    menuOptionAddTicket();
                 case SEARCH_BY_ID:
-                    searchById();
+                    menuOptionSearchById();
                 case DELETE_BY_TICKET_ID:
-                    deleteById();
+                    menuOptionDeleteById();
                 case SHOW_NEXT_TICKET:
-                    showNextTicket();
+                    menuOptionShowNextTicket();
                 case SHOW_ALL_TICKETS:
-                    displayAllTickets();
+                    menuOptionDisplayAllTickets();
                 case QUIT:
-                    quitProgram();
+                    menuOptionQuitProgram();
                     quit = true;
             }
         }
     }
     
     
-    protected void loadTickets() {
-        //TODO problem 7 load open tickets from a file, using your new TicketFileIO class
-    }
     
-    
-    protected void addTicket() {
+    protected void menuOptionAddTicket() {
         // Get ticket data from user interface
         Ticket newTicket = ticketUI.getNewTicketInfo();
         // Add to the ticket store
@@ -77,8 +67,7 @@ public class Question_3_Support_Ticket_Manager {
         ticketUI.userMessage("Ticket added to the ticket queue");
     }
     
-    
-    protected void searchById() {
+    protected void menuOptionSearchById() {
         
         int ticketID = ticketUI.getTicketID();
         Ticket ticket = ticketStore.getTicketById(ticketID);
@@ -88,16 +77,71 @@ public class Question_3_Support_Ticket_Manager {
             ticketUI.displayTicket(ticket);
         }
     }
-
-
-    protected void deleteById() {
+    
+    protected void menuOptionDeleteById() {
         // Get a ticket ID
         int ticketID = ticketUI.getTicketID();
-        
+    
         Ticket toDelete = ticketStore.getTicketById(ticketID);
         ticketUI.displayTicket(toDelete);
         
-        // Confirm before delete
+        deleteTicketById(ticketID);
+    
+    }
+    
+    protected void menuOptionShowNextTicket() {
+        Ticket next = ticketStore.peekNextTicket();
+        ticketUI.displayTicket(next);
+    }
+    
+    protected void menuOptionDisplayAllTickets() {
+        ticketUI.displayTickets(ticketStore.getAllTickets());
+    }
+    
+    protected void menuOptionSearchByDescription() {
+        
+        // TODO problem 3 implement this method.
+        
+        // Use TicketUI getSearchTerm method to ask user for search term e.g. "server" or "powerpoint"
+        // Create a method in TicketStore to get list of matching Tickets for a search term;
+        //      this method should return a list of all tickets which contain the user's
+        //      search term in their description
+        // Use TicketUI displayTickets method to print the list of matching tickets
+        
+    }
+    
+    protected void menuOptionDeleteTicketByDescription() {
+        
+        // TODO problem 4 implement this method.
+        // Ask user for search term e.g. "server"
+        
+        // If there are matching tickets, use TicketUI to ask user which ticket ID to delete;
+        // call deleteTicketById(ticketID) to delete the ticket.
+        
+        // else, use TicketUI to show user 'not found' message
+        
+    }
+    
+    protected void menuOptionQuitProgram() {
+        
+        //TODO Problem 6 use the TicketFileIO methods to save all open tickets to a file
+        //TODO Save all resolved tickets to a separate file containing today's filename
+        
+    }
+    
+    
+    protected void loadTickets() {
+        //TODO problem 7 load open tickets from a file, using your new TicketFileIO class
+    }
+    
+    
+    protected void deleteTicketById(int ticketID) {
+    
+        // TODO problem 5 use TicketUI to get the resolution for this Ticket
+        // This method will be called by menuOptionDeleteTicketByDescription and menuOptionDeleteById
+        // Save the resolution and the current date in this Ticket
+        // add it to the ResolvedTicketStore object.
+
         if (ticketUI.areYouSure("Delete the above ticket, are you sure?")) {
             boolean deleted = ticketStore.deleteTicketById(ticketID);
             if (deleted) {
@@ -110,55 +154,6 @@ public class Question_3_Support_Ticket_Manager {
         }
     }
     
-    
-    protected void searchByDescription() {
-        
-        // TODO problem 3 implement this method.
-        
-        // Use TicketUI getSearchTerm method to ask user for search term e.g. "server" or "powerpoint"
-        // Create a method in TicketStore to get list of matching Tickets for a search term;
-        //      this method should return a list of all tickets which contain the user's
-        //      search term in their description
-        // Use TicketUI displayTickets method to print the list of matching tickets
-        
-    }
-    
-    
-    protected void deleteTicketByDescription() {
-        
-        // TODO problem 4 implement this method.
-        // Ask user for search term e.g. "server"
-    
-        // If there are matching tickets, use TicketUI to ask user which ticket ID to delete;
-        //      Use TicketStore method to delete this ticket
-    
-        // else, use TicketUI to show user 'not found' message
-        
-        // TODO problem 5 use TicketUI to get the resolution for this Ticket
-        // Save the resolution and the current date in this Ticket
-        // add it to the ResolvedTicketStore object.
-    
-    }
-    
-    
-    
-    protected void showNextTicket() {
-        Ticket next = ticketStore.peekNextTicket();
-        ticketUI.displayTicket(next);
-    }
-    
-    
-    protected void displayAllTickets() {
-        ticketUI.displayTickets(ticketStore.getAllTickets());
-    }
-    
-    
-    protected void quitProgram() {
-        
-        //TODO Problem 6 use the TicketFileIO methods to save all open tickets to a file
-        //TODO Save all resolved tickets to a separate file containing today's filename
-        
-    }
     
     
     private TreeMap<Integer,String> configureMenuOptions() {

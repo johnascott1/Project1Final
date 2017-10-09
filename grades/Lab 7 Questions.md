@@ -218,22 +218,20 @@ Implement Delete by Description.  Follow the notes in `deleteTicketByDescription
 
 ### Problem 5:
 
-Modify your program so you can save information about deleted tickets.
+Modify the program so you can save information about deleted tickets.
 
 Your Ticket objects should be able to store another date; `resolvedDate`, the date the ticket was closed.
 And, a String that documents why the ticket was closed – the fix or the resolution for the ticket. This String should be called `resolution`
 
 When a ticket is deleted, it has been resolved in some way. Either a technician fixed the problem, or the user has figured out how to change their own screensaver, or it’s become a non-issue in some other way.
 
-Now, when you delete a Ticket, your program should ask for the resolution. It should store the resolution string , plus the current date in the correct Ticket. Now, remove this Ticket from the ticketQueue list.
+Now, when you delete a Ticket, your `deleteTicketById` method should ask for the resolution. It should store the resolution string , plus the current date in the correct Ticket. Now, remove this Ticket from the ticketQueue list.
 
 A ResolvedTicketStore class is provided for you. It stores resolved tickets in a list, and provides an `addTicket` method. 
 
 Create a ResolvedTicketStore object when the program starts. 
 
-When tickets are resolved, add the resolved ticket to your ResolvedTicketStore.. Add any other resolved tickets created in this session to the ResolvedTicketStore.
-
-You'll need to add a new method to TicketUI to get information about a ticket that is being resolved. Keep your classes focused on their current roles.
+When tickets are resolved, add the resolved ticket to your ResolvedTicketStore. Add any other resolved tickets created in this session to the ResolvedTicketStore.
 
 ### Problem 6:
 
