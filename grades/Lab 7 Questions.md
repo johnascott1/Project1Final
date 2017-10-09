@@ -146,13 +146,13 @@ There are a couple of new things:
 Please make these changes to the program:
 
 a. Create a new class called WaterHeater. This represents a service call for a 
-water heater. A water heater service call needs an **address**, **date service requested**, **description of the problem**, and the **age** of the water heater. 
+water heater. A water heater service call needs an **address**, **date service requested**, **description of the problem**, and the **age** of the water heater. The age varialbe should be an integer.
 
 Resolved service calls for WaterHeater objects also need the **resolved date**, **description of the resolution**, and the **fee** charged to the customer. 
 
 Note that many of these variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. So make WaterHeater should be a subclass of ServiceCall, and it will have the same variables that ServiceCall does. You'll need to add the WaterHeater-specific variables. 
 
-b. The city that this HVAC company operates in requires that all service calls to water heaters have a mandatory $20 extra charge added. As this applies to all water heaters, add a static variable called **cityFee** to your class to store this data.
+b. The city that this HVAC company operates in requires that all service calls to water heaters have a mandatory $20 extra charge added. As this applies to all water heaters, add a static variable called **cityFee** to your class to store this data. This should be a double.
 
 c. Override that **toString** method in WaterHeater which returns a String containing all the static and instance variables for a WaterHeater. You should break down the fee into the service charge plus the $20 mandatory city fee.
 
