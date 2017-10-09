@@ -240,7 +240,7 @@ public class TicketTest {
         // TODO if you modify the signature of getNewTicketInfo, for example, to pass in a max and min priority, you'll need to modify this test too.
     
         System.out.println("If this test times out, make sure you don't accept priorities outside the range 1-5. " +
-                "\nIf you've modified the signature of testPriorityInRange, you may also need to also modify the test.");
+        "\nIf you get 'Unexpected method call' errors, check you only ask 3 questions: description, reporter, priority, in that order");
         
         TicketUI ui = new TicketUI();
     

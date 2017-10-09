@@ -170,10 +170,10 @@ This program is a prototype to manage IT support tickets for a company. Users wo
 Tickets need to store a description of the problem, the date the issue was reported, and the user who reported it. 
 
 The tickets are assigned a priority between 1-5.   
-1 is the most urgent (e.g. all servers down); 
-5 is the least (e.g. missing mouse mat). 
+1 is the most urgent (e.g. all servers down)
+5 is the least serious (e.g. missing mouse mat). 
 
-Each ticket will have a unique integer ID. This is generated internally in the Ticket class. (We'll improve on this approach later in the semester when we cover databases.)
+Each ticket will have a unique integer ID. This is generated internally in the `Ticket` class. (We'll improve on this approach later in the semester when we cover databases.)
 
 When a problem is fixed, the ticket is removed from the list of open tickets and added to a separate list of resolved tickets. A String describing the resolution is stored in the Ticket, and the date the ticket was resolved. 
 
@@ -185,13 +185,13 @@ Run and test the program with some example support tickets.
 
 To think about: What is each class for? How are different responsibilities divided between the classes? 
 
-If the TicketStore used a database instead of an in-memory LinkedList, would TicketUI or Question_3_Support_Ticket_Manager have to do anything differently?
+If `TicketStore` used a database instead of an in-memory LinkedList, would `TicketUI` or `Question_3_Support_Ticket_Manager` have to do anything differently?
 
-Make sure you understand the role of the static and instance ticketID variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class? How are these used to create ID values for each ticket?
+Make sure you understand the role of the static and instance `ticketID` and `ticketIdCounter` variables in the Ticket class. Why are a static variable, and an instance variable, declared in the class? How are these used to create ID values for each ticket?
 
 ### Problem 2:
 
-Add a check to TicketUI.getNewTicketInfo() method, to check that the priority entered is between 1 and 5. 
+Add a check to `TicketUI.getNewTicketInfo()` method, to ensure that the priority entered for a new ticket is between 1 and 5, inclusive. 
 
 ### Problem 3:
 
