@@ -19,14 +19,19 @@ public class FileUtils {
     
     private static String tempDirectoryName = "temporary_directory_for_test_files_verify_no_important_files_are_here_then_you_may_delete";
     
+    
     public static void ensureTempExists() throws IOException {
+        ensureTempExists(tempDirectoryName);
+    }
+    
+    public static void ensureTempExists(String directoryName) throws IOException {
         
         // Create temp directory to contain test files, if it does not exist.
         
         try {
             
             // Does the directory exist? If so, do nothing.
-            File f = new File(tempDirectoryName);
+            File f = new File(directoryName);
             
             if (f.exists()) {
                 // must have created it already.
@@ -34,7 +39,7 @@ public class FileUtils {
             }
             
             else {
-                java.nio.file.Files.createDirectory(new File(tempDirectoryName).toPath());
+                java.nio.file.Files.createDirectory(new File(directoryName).toPath());
             }
             
         } catch (IOException e) {
