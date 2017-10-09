@@ -19,8 +19,7 @@ public class Ticket {
     //The ID for each ticket - an instance variable. Each Ticket will have it's own ticketID variable
     private int ticketID;
 
-    // TODO 6: tickets need to store the resolution date and a string describing the resolution
-    // Either add these fields to this class
+    // TODO 6: tickets need to store the resolution Date and a String describing the resolution
     
      
     public Ticket(String desc, int p, String rep, Date date) {
@@ -74,8 +73,8 @@ public class Ticket {
     public String getDescription() { return description; }
 
     public String toString(){
-        return("ID: " + this.ticketID + " Description: " + this.description + " Priority: " + 					this.priority + " Reported by: "
-                + this.reporter + " Reported on: " + this.dateReported);
+        return("ID: " + this.ticketID + " Description: " + this.description + " Priority: " +
+                this.priority + " Reported by: " + this.reporter + " Reported on: " + this.dateReported);
     }
     
     // TODO you may want to add a method to generate a String representing this Ticket, suitable

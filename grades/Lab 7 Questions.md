@@ -3,71 +3,83 @@
 ## Problem 1: Insect/Bee/Butterfly Abstract Classes
 
 *Note that the Autograder is looking for exact variable/method names.*
+*Note that the Autograder can't grade every aspect of these programs. A portion of your grade will be calculated when the instructor has reviewed your code.*
 
-
-The **Insect** class represents a generic insect species. We are going to specialize it with subclasses.
+The **Insect** class represents a generic insect species. You will specialize it with subclasses.
 
 For the Insect class, please add 3 variables:
 
-* A String called "name" to store the insect’s name. This variable should be protected
-* An int called "wingCount" to store the number of wings. This variable should be protected
-* A constant static int called `LEG_COUNT` to store the number of legs, and set it to 6. This variable should be public 
+* A String called `name` to store the insect’s name. This variable should be protected.
+* An int called `wingCount` to store the number of wings. This variable should be protected.
+* A constant static int called `LEG_COUNT` to store the number of legs. Set it to 6. This variable should be public.
 
 Add get and set methods for name and wingCount.
 
 Think about: why are name and wingCount protected? Why is `LEG_COUNT` public, and why doesn't it need get and set methods? 
 
+Insect objects need to create a String containing all data about that Insect. 
+
+But, we don't know exactly what data will be stored for each specific Insect (a Bee's data will be different to a Butterfly's) so we can't write the code in this method yet. 
+
+In Insect.java, add an **abstract** method called `speciesDataReport` like so,
+
+```
+abstract String speciesDataReport();
+```
+
+The subclasses you are about to create will have have the same `speciesDataReport` method, and these methods will have code in. 
+
+
 The **Butterfly** class represents a butterfly species. It will be a subclass of Insect.
 
-Butterfly needs to extend Insect. Butterfly needs two new variables;
+Configure Butterfly to extend Insect. 
+
+Butterfly needs two new variables:
 
 * A String called `wingColor` to store the butterfly’s wing color
 * A String called `favoriteFlower` to store the butterfly’s favorite flower
 
-Add get and set methods for wingColor and favoriteFlower variables.
+Add get and set methods for the `wingColor` and `favoriteFlower` variables.
 
 Think about: should you make these variables public, private, package-protected, or protected? 
 Do you need get and set methods for name and wingCount in Butterfly? Why or why not? 
 
 Also, add a constructor that takes 4 arguments in this order: the butterfly’s name, number of wings, wing color, and favorite flower.
 
-Also, add a method to the Butterfly class called speciesDataReport(). This method should **override** the method with the same name in Insect. In this method, print all the info for a Butterfly object – its name, wing color, number of wings, number of legs, and favorite flower.
+Also, add a method to the Butterfly class called `speciesDataReport()`. This method should **override** the method with the same name in Insect. In this method, create and return a String containing all the info for a Butterfly object – its name, wing color, number of wings, number of legs, and favorite flower.
 
 
 The **Bee** class represents a bee species.  It will be a subclass of Insect.
 
 Bee needs to have two variables:
 
-* A String called "bodyColor" for the bee’s body color
-* A boolean called "makesHoney" for whether this species of bee makes honey (not all bees do)
+* A String called `bodyColor` for the bee’s body color
+* A boolean called `makesHoney` for whether this species of bee makes honey (not all bees do)
 
 Think about: should you make these variables public, private, package-protected, or protected? 
 Do you need get and set methods for name and wingCount in Bee? Why or why not? 
 
 Add a constructor to set all the variables a Bee object, has in this order; name, number of wings, body color, makes honey.
 
-And, bee needs a method called speciesDataReport() that prints out all of the data for a Bee species.  This method should **override** the method with the same name in Insect. This method has the same name as the Butterfly method, but prints out the Bee information. As it prints out the information, it should print “This bee does make honey” or “this bee does not make honey” instead of “true” or “false”.
-
+And, Bee needs a method called `speciesDataReport()` that creates and returns a String containing all of the data for a Bee species.  This method should **override** the method with the same name in Insect. This method has the same name as the Butterfly method, but prints out the Bee information. As it prints out the information, it should print “This bee does make honey” or “this bee does not make honey” instead of “true” or “false”.
 
 
 **Use the *Question_1_Insect_Manager* class to create some Insect, Bee and Butterfly objects.**
 
 
-Test your Butterfly class by writing code in the Question_1_InsectManager class to create some test Butterfly object. Create two Butterfly objects, and then call the speciesDataReport() method on each to display all the data for each of the Butterfly objects.
-
+Test your Butterfly class by writing code in the Question_1_InsectManager class to create some test Butterfly object. Create two Butterfly objects, and then call the `speciesDataReport()` method on each to display all the data for each of the Butterfly objects.
 
 Suggestions: A Monarch butterfly has 4 wings, its wings are orange and black, and likes a plant called milkweed.
 A Common Yellow Swallowtail butterfly has 4 wings, its wings are yellow and black, and likes a plant called milk parsley.
 
-
-Test your Bee class by writing code in the InsectManager class to create some test Bee object. Create two Bee objects, and then call the speciesDataReport() method on each to display all the data for each of the Bee objects.
+Test your Bee class by writing code in the InsectManager class to create some test Bee object. Create two Bee objects, and then call the `speciesDataReport()` method on each to display all the data for each of the Bee objects.
 
 Suggestions: name = “Honey bee”, color = “yellow and black”, makes honey = true,  number of wings = 4
 Name= “Bumble bee”, color = “yellow, black and white”, makes honey = false, number of wings = 4
 
 Last task: Create an ArrayList or LinkedList of Insects. Add all of your Bee and Butterfly objects to this list.
 
-Use a for each loop to iterate over your list and call speciesDataReport() for each Insect, perhaps like this,
+Use a for each loop to iterate over your list and call `speciesDataReport()` for each Insect, like this,
 
 ```
 LinkedList<Insect> insects = new LinkedList();
@@ -76,14 +88,16 @@ LinkedList<Insect> insects = new LinkedList();
 
 for (Insect i : insects) {
 
-   i.speciesDataReport();
+   String data = i.speciesDataReport();
+   System.out.println(data);
 
 }
 ```
 
+For which object is the speciesDataReport being called for? Notice that the calls to `speciesDataReport` run the method of that name for the correct type of Insect. It will call the speciesDataReport from the Butterfly class if the Insect object in the list is a Butterfly, and it will call the speciesDataReport from the Bee class if the Insect object in the list is a Bee.
+
 
 So what's happening with the *abstract* Insect class? Can you make an Insect object? 
-
 
 The first line of the class is 
 
@@ -93,35 +107,29 @@ And it contains an abstract method,
 
 `public **abstract** void speciesDataReport();`
 
-
-So if you wrote code like 
+So if you wrote code like this,
 
 `Insect i = new Insect();`
 
-The compiler will report an error. An abstract class is one that you can't make objects from.  You can't make an Insect object from the Insect class.
+The compiler will report an error. An abstract class is one that you can't make objects from.  You can't make an Insect object from the Insect class. If you wrote `Insect i = new Insect();` in your program, verify that you see a compiler error, and then remove it. 
 
-You can subclass an abstract class, (create classes that declare that they are a subclass of Insect) and the subclasses can be used to make objects - you can make Bee and Butterfly objects.  Note that a Bee object is also an Insect object. A Butterfly object is also an Insect object.
+You can subclass an abstract class, (create classes that declare that they are a subclass of Insect) and the subclasses *can* be used to make objects. You can make Bee and Butterfly objects.  Note that a Bee object is also an Insect object. A Butterfly object is also an Insect object.
  
-So why is this useful? It's helpful in a scenario where you have a general description class, but you know that you will be specializing it with mre than one subclass; and only the subclasses will be do tasks in your program. You can now specify required behavior in the (abstract) superclass and enforce that the subclasses will need to have this behavior too.
+So why is this useful? It's helpful in a scenario where you have a general description class, but you know that you will be specializing it with more than one subclass; and only the subclasses will be doing tasks in your program. You can now specify required behavior in the (abstract) superclass and enforce that the subclasses will be able to provide this behavior too.
 
-It doesn't make much sense to make an Insect object. It's too vague to be useful in your program. But, it does make sense to create Bee or Butterfly objects. 
-
-Abstract classes can define abstract methods. These are methods that you are requiring subclasses to have, but Insect doesn't need to decide exactly what it will do. So anything that subclasses Insect will be required to have a a speciesDataReport method, and each subclass can decide how it will be implemented - so each subclass can do it's own specific speciesDataReport. 
-
-This is useful if you need to guarantee that all subclasses need to have a particular behavior. We'll see some more examples of this when we look at GUIs.
-
-Imagine you don't have the `abstract speciesDataReport` in Insect. Comment it out, and then look at your loop in the InsectManager class. The compiler will be reporting an error. The loop is printing Bee and Butterfly data, and these classes both have speciesDataReport. So why does the compiler complain?
-
-The Insect class doesn't have a method called speciesDataReport. While Bee and Butterfly both do, there is nothing to guarantee you won’t add an Insect object to this LinkedList, and Insect does not have this method.  So the compiler reports an error.
-
-Insect doesn't want to implement speciesDataReport. It only represents general Insect objects, not a particular species - so it doesn't make sense to implement a real speciesDataReport. 
+Insect doesn't want to implement speciesDataReport. It only represents general Insect objects, not a particular species - so it doesn't make sense to implement a real speciesDataReport.  It doesn't make much sense to make an Insect object. It's too vague to be useful in your program. But, it does make sense to create Bee or Butterfly objects. 
 
 So, that's why we create an abstract speciesDataReport in Insect. “Abstract”, for the method, means that all Insect objects will have a method called speciesDataReport. But Insect doesn't want to define exactly what speciesDataReport does, and Insect doesn't need to implement it. 
 
 So declare it as abstract in Insect, and the compiler will make sure all subclasses of Insect will create a speciesDataReport method. So, the compiler knows that every actual Insect object (in our case, Bee and Butterfly objects) will have to have an speciesDataReport. 
 
-Notice that the class to speciesDataReport runs the method of that name for the correct type of Insect. It will calls the speciesDataReport from the Butterfly class if the Insect object in the list is a Butterfly, and it will call the speciesDataReport from the Bee class if the Insect object in the list is a Bee.
+Abstract classes can define abstract methods. These are methods that you are requiring subclasses to have, but Insect doesn't need to decide how exactly it will be done. So anything that subclasses Insect will be required to have a `speciesDataReport` method, and each subclass can decide how it will be implemented - so each subclass can generate it's own specific speciesDataReport. 
 
+This is useful if you need to guarantee that all subclasses need to have a particular behavior. We'll see some more examples of this when we look at GUIs.
+
+Finally, imagine you don't have the `abstract void speciesDataReport();` line in Insect. Comment this line out, and then look at your loop in the InsectManager class. The compiler will be reporting an error. The loop is printing Bee and Butterfly data, and these classes both have speciesDataReport. So why does the compiler complain?
+
+The Insect class doesn't have a method called speciesDataReport. While Bee and Butterfly both do, there is nothing to guarantee you won’t add an Insect object to this LinkedList, and Insect does not have this method.  So the compiler reports an error. Now uncomment this line `abstract void speciesDataReport();` and verify your code compiles and runs as expected. 
 
 ## Problem 2: HVAC, Inheritance
 
@@ -131,7 +139,7 @@ Run the program, and review the code.
 
 There are a couple of new things:
 
-* HVACInput.java uses a TreeMap; which behaves like a HashMap but keeps the keys in order.
+* HVACInput.java uses a TreeMap; which behaves like a HashMap but keeps the keys in sorted order.
 * An **enum** in the Furnace class. An enum is a collection of named constants; useful if you know a variable can only have one of a defined number of values - like types of furnace.
 
 Please make these changes to the program:
@@ -139,7 +147,7 @@ Please make these changes to the program:
 a. Create a new class called WaterHeater. This represents a service call for a 
 water heater. A water heater service call needs an **address**, **date service requested**, **description of the problem**, and the **age** of the water heater. 
 
-Resolved service calls also need the **resolved date**, **description of the resolution**, and the **fee** charged to the customer. 
+Resolved service calls for WaterHeater objects also need the **resolved date**, **description of the resolution**, and the **fee** charged to the customer. 
 
 Note that many of these variables are already declared in ServiceCall, and a WaterHeater is a type of ServiceCall. So make WaterHeater should be a subclass of ServiceCall, and it will have the same variables that ServiceCall does. You'll need to add the WaterHeater-specific variables. 
 
@@ -152,6 +160,7 @@ address, description of the problem, date reported, and the age of the water hea
 
 e. Add code to ServiceCallManager.java to test your new class. Make sure you can add service calls for water heaters to the list of today's ServiceCalls.
 
+Note that the tests only check for the correct behavior of the WaterHeater object, and do not check any of the code you'll add to ServiceCallManager. This will be human-graded. 
 
 ## Question 3 Support Ticket manager 
 

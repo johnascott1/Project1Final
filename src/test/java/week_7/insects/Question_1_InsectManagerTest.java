@@ -117,7 +117,6 @@ public class Question_1_InsectManagerTest {
         assertFalse("Bee class should NOT declare a wingCount variable", hasFieldOfType(beeClass, "wingCount", int.class));
         assertFalse("Bee class should NOT declare a legCount variable", hasFieldOfType(beeClass, "legCount", int.class));
         
-        
         // Check Bee is a subclass of Insect
         
         assertEquals("Bee should be a subclass of Insect", Insect.class, beeClass.getSuperclass());
@@ -146,6 +145,17 @@ public class Question_1_InsectManagerTest {
         assertEquals("Bee class speciesDataReport should return a String", String.class, speciesData.getReturnType());
         
     }
+    
+    
+    
+    @Test
+    public void testSpeciesData() {
+        
+        // Create a Butterfly and call speciesDataReport
+        
+    }
+    
+    
     
 }
     

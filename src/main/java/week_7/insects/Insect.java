@@ -15,6 +15,6 @@ public abstract class Insect {
     
     // TODO add an abstract method called speciesDataReport that subclasses will be forced to override
     // speciesDataReport should take no arguments, and return a String.
-    
+    // You don't need to write the method body. Insect's subclasses will do that.
     
 }

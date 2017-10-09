@@ -1,7 +1,7 @@
 package week_7.insects;
 
 /**
- * Repsents a Bee species.
+ * Represents a Bee species.
  */
 
 public class Bee {
@@ -14,6 +14,6 @@ public class Bee {
     
     // TODO add a constructor to set all necessary values
     
-    // TODO override the speciesDataReport to print Bee information
+    // TODO override the speciesDataReport to return a String with Bee information
     
 }

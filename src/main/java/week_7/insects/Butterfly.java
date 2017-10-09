@@ -14,6 +14,6 @@ public class Butterfly {
     
     // TODO add a constructor to set all necessary values
     
-    // TODO override the speciesDataReport method to print Butterfly information
+    // TODO override the speciesDataReport method to return a String with Butterfly information
     
 }
