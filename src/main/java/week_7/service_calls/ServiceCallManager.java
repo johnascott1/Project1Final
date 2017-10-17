@@ -21,7 +21,7 @@ public class ServiceCallManager {
     private final int PRINT_ALL_CALLS = 4;
     private final int PRINT_ALL_RESOLVED = 5;
     private final int QUIT = 6;
-    
+
     private final int ADD_FURNACE = 1;
     private final int ADD_AC = 2;
     private final int RETURN_TO_MAIN = 3;
@@ -158,6 +158,15 @@ public class ServiceCallManager {
         System.out.println("Added the following AC unit to list of calls:\n" + ac);
     }
 
+    private void addWaterHeaterServiceCall(){
+        String address = stringInput("Enter address of water heater");
+        String problem = stringInput("Enter description of problem");
+        int age = intInput("Enter the age of your water heater");
+
+        WaterHeater water = new WaterHeater(address, problem, new Date(), age);
+        todayServiceCalls.add(water);
+        System.out.println("Added the following water heater untits to the list of service calls:\n" + water);
+    }
 
     /* Resolve the call at the top of the queue
      Call is resolved by removing it from the queue, asking user

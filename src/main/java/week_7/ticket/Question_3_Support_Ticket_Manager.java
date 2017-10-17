@@ -1,6 +1,10 @@
 package week_7.ticket;
 
+import java.util.Date;
+import java.util.LinkedList;
 import java.util.TreeMap;
+
+import static input.InputUtils.stringInput;
 
 
 /** The instruction are in grades/Lab 7 Questions.md  */
@@ -18,6 +22,8 @@ public class Question_3_Support_Ticket_Manager {
     static final int DELETE_BY_TICKET_ID = 3;
     static final int SHOW_NEXT_TICKET = 4;
     static final int SHOW_ALL_TICKETS = 5;
+    static final int SEARCH_BY_DESCRIPTION = 6;
+    static final int DELETE_BY_DESCRIPTION = 7;
     static final int QUIT = 9;
     
     // Global objects - the data stores, and the user interface
@@ -25,6 +31,7 @@ public class Question_3_Support_Ticket_Manager {
     TicketUI ticketUI = new TicketUI();
     
     // TODO Q5 create a ResolvedTicketStore object
+    ResolvedTicketStore resolvedTickets = new ResolvedTicketStore();
     
     // Write and read to files in this directory. The tests will use a different directory, but same filenames.
     static String ticketDataDirectory = "TicketData";
@@ -52,13 +59,20 @@ public class Question_3_Support_Ticket_Manager {
                     menuOptionShowNextTicket();
                 case SHOW_ALL_TICKETS:
                     menuOptionDisplayAllTickets();
+                case SEARCH_BY_DESCRIPTION:
+                    menuOptionSearchByDescription();
+                case DELETE_BY_DESCRIPTION:
+                    menuOptionDeleteTicketByDescription();
                 case QUIT:
                     menuOptionQuitProgram();
                     quit = true;
             }
         }
     }
-    
+
+    protected void saveTickets(){
+        System.out.println("Yep");
+    }
     
     
     protected void menuOptionAddTicket() {
@@ -109,17 +123,27 @@ public class Question_3_Support_Ticket_Manager {
         //      this method should return a list of all tickets which contain the user's
         //      search term in their description
         // Use TicketUI displayTickets method to print the list of matching tickets
-        
+
+
+
+        String searchTerm = ticketUI.getSearchTerm();
+        LinkedList<Ticket> ticketsAndSuch = ticketStore.searchByDescription(searchTerm);
+        ticketUI.displayTickets(ticketsAndSuch);
     }
     
     protected void menuOptionDeleteTicketByDescription() {
         
         // TODO problem 4 implement this method.
         // Ask user for search term e.g. "server"
-        
+        String deleteSearchTerm = stringInput("Enter a search term.");
+        LinkedList<Ticket> ticketsToDelete = ticketStore.searchByDescription(deleteSearchTerm);
         // If there are matching tickets, use TicketUI to ask user which ticket ID to delete;
         // call deleteTicketById(ticketID) to delete the ticket.
-        
+        for (Ticket deleteTicket : ticketsToDelete) {
+            if (deleteTicket.getDescription().contains(deleteSearchTerm)) {
+                deleteTicketById(deleteTicket.getTicketID());
+            }
+        }
         // else, use TicketUI to show user 'not found' message
         
     }
@@ -130,6 +154,9 @@ public class Question_3_Support_Ticket_Manager {
         //TODO Save all resolved tickets to a separate file containing today's filename
         //TODO save the ticket ID counter so when the program re-opens, it does not reset to 1
         // Make sure you save all of your files in the directory given by String ticketDataDirectory = "TicketData";
+        TicketFileIO openTickets = new TicketFileIO();
+        openTickets.unresolvedTickets(ticketStore.getAllTickets());
+
     }
     
     
@@ -146,8 +173,12 @@ public class Question_3_Support_Ticket_Manager {
         // This method will be called by menuOptionDeleteTicketByDescription and menuOptionDeleteById
         // Save the resolution and the current date in this Ticket
         // add it to the ResolvedTicketStore object.
-
+        Date resolutionDate = new Date();
+        String resolution = stringInput("How was this resolved?");
         if (ticketUI.areYouSure("Delete the above ticket, are you sure?")) {
+            Ticket deleteThis = ticketStore.getTicketById(ticketID);
+
+            resolvedTickets.addTicket(deleteThis);
             boolean deleted = ticketStore.deleteTicketById(ticketID);
             if (deleted) {
                 ticketUI.userMessage("Ticket deleted");
@@ -170,7 +201,7 @@ public class Question_3_Support_Ticket_Manager {
         options.put(DELETE_BY_TICKET_ID, "Delete by ticket ID");
         options.put(SHOW_NEXT_TICKET, "Show next ticket in ticket queue");
         options.put(SHOW_ALL_TICKETS, "Show all open tickets");
-        
+        options.put(SEARCH_BY_DESCRIPTION, "Search by description.");
         options.put(QUIT, "Save and quit");
         
         return options;

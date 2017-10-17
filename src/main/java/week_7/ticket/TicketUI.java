@@ -30,21 +30,25 @@ public class TicketUI {
             }
             
             // Else, loop until user enters valid choice from the menu
-            
+
         }
     }
-    
+
+
     
     protected Ticket getNewTicketInfo() {
         
         Date dateReported = new Date(); //Default constructor creates Date with current date/time
-        
+        Date dateResolved = new Date();
         String description = stringInput("Enter description of the problem: ");
         String reporter = stringInput("Who reported this problem? ");
-        
+        String resolution = stringInput("How was the issue resolved?");
         // TODO Problem 2 ensure the priority is between 1 and 5
         int priority = intInput("Enter priority of " + description);
-        
+        while ((priority < 1) | (priority > 5)) {
+            System.out.println("Please enter a priority number between 1 and 5.");
+            priority = intInput("Enter priority of " + description);
+        }
         Ticket t = new Ticket(description, priority, reporter, dateReported);
         
         return t;

@@ -8,6 +8,8 @@ public class Ticket {
     private String reporter; //Stores person or department who reported problem
     private String description;
     private Date dateReported;
+    private Date dateClosed;
+    private String resolution;
 
     //TODO 1: Make sure you understand how ticketIdCounter and ticketID interact. Why is ticketIdCounter static and ticketID is not?
 
@@ -29,11 +31,29 @@ public class Ticket {
         this.reporter = rep;
         this.dateReported = date;
         this.ticketID = ticketIdCounter;
-    
+
         ticketIdCounter++;    // Increment ticketIDCounter so the next ticket's number is one higher
     
     }
-    
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public Date getDateClosed (Date dateClosed) {
+         return this.dateClosed;
+
+
+    }
+
+    public void setDateClosed(Date dateClosed) {
+        this.dateClosed = dateClosed;
+    }
+
     // TODO 7: add your constructor to create a Ticket from existing Ticket data read from a file
     
     // TODO 7: Ensure that every new Ticket created has a unique ID, even if the program is closed and restarted

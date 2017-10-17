@@ -1,4 +1,4 @@
-# Lab 7 Inheritance, Abstract Classes
+l# Lab 7 Inheritance, Abstract Classes
 
 ## Problem 1: Insect/Bee/Butterfly Abstract Classes
 
@@ -56,24 +56,36 @@ Bee needs to have two variables:
 * A String called `bodyColor` for the bee’s body color
 * A boolean called `makesHoney` for whether this species of bee makes honey (not all bees do)
 
-Add get and set methods for `bodyColor` and `makesHoney`. Call the methods for `makesHoney` getMakesHoney and setMakesHoney. If you create the methods with IntelliJ the default names might be different. 
+Add get and set methods for `bodyColor` and `makesHoney`. Call the methods for `makesHoney` getMakesHoney and setMakesHoney. 
+
+If you create the methods with IntelliJ the default names might be different. 
+
 Think about: should you make these variables public, private, package-protected, or protected? 
+
 Do you need get and set methods for name and wingCount in Bee? Why or why not? 
 
 Add a constructor to set all the variables a Bee object, has in this order; name, number of wings, body color, makes honey.
 
-And, Bee needs a method called `speciesDataReport()` that creates and returns a String containing all of the data for a Bee species.  This method should **override** the method with the same name in Insect. This method has the same name as the Butterfly method, but prints out the Bee information. As it prints out the information, it should print “This bee does make honey” or “this bee does not make honey” instead of “true” or “false”.
+And, Bee needs a method called `speciesDataReport()` that creates and returns a String containing all of the data for a Bee species.  
+
+This method should **override** the method with the same name in Insect. This method has the same name as the Butterfly method, but prints out the Bee information. 
+
+As it prints out the information, it should print “This bee does make honey” or “this bee does not make honey” instead of “true” or “false”.
 
 
 **Use the *Question_1_Insect_Manager* class to create some Insect, Bee and Butterfly objects.**
 
 
-Test your Butterfly class by writing code in the Question_1_InsectManager class to create some test Butterfly object. Create two Butterfly objects, and then call the `speciesDataReport()` method on each to display all the data for each of the Butterfly objects.
+Test your Butterfly class by writing code in the Question_1_InsectManager class to create some test Butterfly object. Create two Butterfly objects, 
+
+and then call the `speciesDataReport()` method on each to display all the data for each of the Butterfly objects.
 
 Suggestions: A Monarch butterfly has 4 wings, its wings are orange and black, and likes a plant called milkweed.
+
 A Common Yellow Swallowtail butterfly has 4 wings, its wings are yellow and black, and likes a plant called milk parsley.
 
-Test your Bee class by writing code in the InsectManager class to create some test Bee object. Create two Bee objects, and then call the `speciesDataReport()` method on each to display all the data for each of the Bee objects.
+Test your Bee class by writing code in the InsectManager class to create some test Bee object. Create two Bee objects, and then 
+call the `speciesDataReport()` method on each to display all the data for each of the Bee objects.
 
 Suggestions: name = “Honey bee”, color = “yellow and black”, makes honey = true,  number of wings = 4
 Name= “Bumble bee”, color = “yellow, black and white”, makes honey = false, number of wings = 4
