@@ -12,21 +12,39 @@ import static input.InputUtils.intInput;
 public class Project1Core {
 
     public static void main(String[] args) {
+        
+        
         Deck deckObject = new Deck();
-        ArrayList<String> deck = deckObject.getDeck();
+       // ArrayList<AgramCard> deck = deckObject.getDeck();
         ArrayList<Player> playerQue = new ArrayList<>();
-        int playerCount = intInput("Enter the number of players: ");
-        int humanPlayerCount = intInput("Enter the number of human players: ");
+        
+        
+        // Just testing
+        AgramCard firstCard = deckObject.deal();
+        System.out.println(firstCard);
+        System.out.println(firstCard.suit);
+        System.out.println(firstCard.faceValue);
+    
+        
+        
+    
+        int playerCount = 2; //intInput("Enter the number of players: ");
+        int humanPlayerCount = 2; //intInput("Enter the number of human players: ");
         int computerPlayerCount = (playerCount-humanPlayerCount);
         /*
         for (String checkDeck : deck){
             System.out.println(checkDeck);
         }
         */
-        for (int humanTotal = 0; humanTotal < humanPlayerCount; humanPlayerCount++){
+        for (int humanTotal = 0; humanTotal < humanPlayerCount; humanTotal++){
             //System.out.println(humanTotal);
             String name = ("Player " + humanTotal);
-            HumanPlayer newPlayer = new HumanPlayer(name);
+            ArrayList<AgramCard> handOfCards = Deal.makeDeal(deckObject);
+    
+            System.out.println(handOfCards);
+    
+            
+            HumanPlayer newPlayer = new HumanPlayer(name, handOfCards);
             System.out.println(newPlayer.getPlayerHand());
         }
     }
